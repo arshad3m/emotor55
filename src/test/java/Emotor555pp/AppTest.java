@@ -9,6 +9,7 @@ import junit.framework.TestSuite;
  */
 public class AppTest 
     extends TestCase
+    
 {
     /**
      * Create the test case
@@ -16,8 +17,9 @@ public class AppTest
      * @param testName name of the test case
      */
     public AppTest( String testName )
-    {
+    {	
         super( testName );
+        //test
     }
 
     /**
@@ -25,7 +27,9 @@ public class AppTest
      */
     public static Test suite()
     {
-        return new TestSuite( AppTest.class );
+        System.out.println("arshad test");
+    	return new TestSuite( AppTest.class );
+        
     }
 
     /**
