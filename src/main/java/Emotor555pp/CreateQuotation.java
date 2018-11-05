@@ -1,94 +1,110 @@
 package Emotor555pp;
-import java.awt.event.ActionEvent;
+
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static Emotor555pp.utilities.*;
 //import org.testng.asserts.Assertion;
 
 public class CreateQuotation {
 private WebDriver driver;
-private Select customerType;
-private Select marketerCode;
-private Select Salutation;
-private WebElement leasingCompany;
-private WebElement leasingCompanyOption;
-private WebElement financeInterest;
-private WebElement financeInterestOption;
-By quotationLink=By.linkText("Quotations");
-By createquotationLink=By.linkText("Create Quotation");
-By nic=By.id("nic1");
-By firstName=By.id("firstName1");
-By lastName=By.id("lastname1");
-By contactNumber1=By.id("contactnumber1");
-By add1=By.id("address1");
-By add2=By.id("address2");
+
+private By quotationLink=By.linkText("Quotations");
+private By createquotationLink=By.linkText("Create Quotation");
+//private By createquotationLink;
+
+private By nic=By.id("nic1");
+private By firstName=By.id("firstName1");
+private By lastName=By.id("lastname1");
+private By contactNumber1=By.id("contactnumber1");
+private By add1=By.id("address1");
+private By add2=By.id("address2");
+
+private WebDriverWait wait;
 
 	
 	public  CreateQuotation(WebDriver driver) {
 		this.driver=driver;
+		wait=new WebDriverWait(driver, 30);
+	}
+	public void clickToCreateQuotation()
+	{
+		//Click on Quotations section
+		ClickElement(driver, quotationLink);
+		
+		//Click on Create quotation
+		ClickElement(driver, createquotationLink);
+		
 		
 	}
-	public void pageNavigation()
+	
+
+
+	
+	
+	public void addInitialDetails(String strCustomerType,String strMarkerterCode) throws InterruptedException
 	{
 		
-		driver.findElement(quotationLink).click();
-		driver.findElement(createquotationLink).click();
+		
+		WebElement dd_customerType = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("partyType")));
+		WebElement dd_marketerCode = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("accountmanager")));
 		
 		
+	    //Select customer type dropdown
+	    SelectByVisibleText(driver, dd_customerType, strCustomerType);
+	    
+	    //Select marketer code
+	    SelectByVisibleText(driver,dd_marketerCode,strMarkerterCode);
+	    	
+    
+    
+	    //click leasing company dropdown
+	    ClickElementById(driver, "select2-chosen-3");
+	    
+	    //click leasing company dropdown result
+	    ClickElementById(driver,"select2-results-3");
+
+	    
+	    //click finance interest dropdown
+	    ClickElementById(driver,"select2-chosen-4");
+	    
+	    //click finance interest dropdown result
+	    ClickElementById(driver,"select2-results-4");
+	    
+    
+
 	}
-	public void addinitialDetails(String strCustomerType,String strMarkerterCode) throws InterruptedException
-	{
-		 
-		customerType = new Select(driver.findElement(By.id("partyType")));
-	    customerType.selectByVisibleText(strCustomerType);
-	    marketerCode=new Select(driver.findElement(By.id("accountmanager")));
-	    marketerCode.selectByVisibleText(strMarkerterCode);
-	    driver.findElement(createquotationLink).click();
-	    
-	    //
-	    leasingCompany=driver.findElement(By.id("select2-chosen-3"));
-	    Thread.sleep(5000);
-	    leasingCompany.click();
-	    Thread.sleep(1000);
-	    leasingCompanyOption=driver.findElement(By.id("select2-results-3"));
-	    Thread.sleep(1000);
-	    leasingCompanyOption.click();
-	    
-	    ///
-	    financeInterest=driver.findElement(By.id("select2-chosen-4"));
-	    Thread.sleep(5000);
-	    financeInterest.click();
-	    Thread.sleep(1000);
-	    financeInterestOption=driver.findElement(By.id("select2-results-4"));
-	    Thread.sleep(1000);
-	    financeInterestOption.click();
-	    ///
-	    
-	    //Actions builder = new Actions(driver);
-	    //Actions
-	   
-	 
-	}
-	  public void addinitialCustomerDetails(String strSalutation,String strNic)
-	  {
-		    Salutation = new Select(driver.findElement(By.id("salutation1")));
-			Salutation.selectByVisibleText(strSalutation);
-			driver.findElement(nic).sendKeys(strNic);
-	  }
-	public void addcustomerDetails(String strfirstName,String strlastName,String strcontactNumber1,String strAdd1,String strAdd2)
-	{
-		 		
-	    driver.findElement(firstName).sendKeys(strfirstName);
-	    driver.findElement(lastName).sendKeys(strlastName);
-	    driver.findElement(contactNumber1).sendKeys(strcontactNumber1);
-	    driver.findElement(add1).sendKeys(strAdd1);
-	    driver.findElement(add2).sendKeys(strAdd2);
-	    
+
+	public void addInitialCustomerDetails(String strSalutation, String strNic) {
+
+		//select salutation
+		SelectByVisibleText(driver,driver.findElement(By.id("salutation1")),strSalutation);
 		
+		EnterValue(driver, nic, strNic);
+	}
+
+	public void addCustomerDetails(String strfirstName, String strlastName, String strcontactNumber1, String strAdd1,
+			String strAdd2) {
+
+		EnterValue(driver, firstName, strfirstName);
+		EnterValue(driver, lastName, strlastName);
+		EnterValue(driver, contactNumber1, strcontactNumber1);
+		EnterValue(driver, add1, strAdd1);
+		EnterValue(driver, add2, strAdd2);
+
+	}
+	
+	public void clickCheckBox_WithCustomerDetails() {
+		
+		ClickElementByXpath(driver, "//*[@id=\"main-wrapper\"]/div/div/ng-view/div[2]/div[1]/div/div/div/div[1]/div/div[3]/div[1]/div/label");
+	}
+	
+	
+	public void clickCheckBox_WithoutCustomerDetails() {
+		ClickElementByXpath(driver, "//*[@id=\"main-wrapper\"]/div/div/ng-view/div[2]/div[1]/div/div/div/div[1]/div/div[3]/div[2]/div/label");
 	}
 }

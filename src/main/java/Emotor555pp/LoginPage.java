@@ -1,5 +1,7 @@
 package Emotor555pp;
 
+import static Emotor555pp.utilities.*;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,15 +26,15 @@ public  LoginPage(WebDriver driver) {
 	}
 
 public void enterUsername(String strUsername) {
-	driver.findElement(username).sendKeys(strUsername);
+	EnterValue(driver, username, strUsername);
 }
 
 public void enterPassword(String strPassword) {
-	driver.findElement(password).sendKeys(strPassword);
+	EnterValue(driver, password, strPassword);
 }
 
 public void clickLoginButton() {
-	driver.findElement(LoginButton).click();
+	ClickElement(driver, LoginButton);
 }
 
 public String titleVerification()

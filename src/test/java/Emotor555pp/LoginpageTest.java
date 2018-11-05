@@ -1,19 +1,27 @@
 package Emotor555pp;
 
 import static org.testng.Assert.assertEquals;
+import static Emotor555pp.ExcelReader.*;
+
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class LoginpageTest {
-	WebDriver driver;
+	private WebDriver driver;
 	private String actualTittle;
 	private String expectedTittle;
-	LoginPage objLg;
-	CreateQuotation objCq;
+	private LoginPage login;
+	private CreateQuotation quotation;
+
     
 	@BeforeTest
 	public void setup(){
@@ -25,26 +33,28 @@ public class LoginpageTest {
 	}
 	
 	@Test
-	public void testCreateQuotation() throws InterruptedException
-	{
-	 objLg=new LoginPage(driver);
-	 objLg.enterUsername("T220");
-	 objLg.enterPassword("allianz@2018");
-	 Thread.sleep(5000);
-	  objLg.clickLoginButton();
-	  actualTittle=objLg.titleVerification();
-	  expectedTittle="Allianz Emotor";
-	  assertEquals( actualTittle,expectedTittle);
-	  Thread.sleep(5000);
-	  objCq=new CreateQuotation(driver);
-	  objCq.pageNavigation();
-	  Thread.sleep(2500);
-	  objCq.addinitialDetails("Individual","T220-Prepod");
-	  Thread.sleep(2500);
-	  objCq.addinitialCustomerDetails("Miss","865360920V");
-	  Thread.sleep(1000);
-	  objCq.addcustomerDetails("Lilani","Silva","071463764377","300/A","Rajapihilla");
-	 //lg.quiteDriver();
+	public void testCreateQuotation() throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException {
+		login = new LoginPage(driver);
+		ExcelReader xxx=new ExcelReader("");
+		System.out.println(getData("market_code", 1)+".........arshad");
+		
+		
+		//login to page
+		login.enterUsername("T220");
+		login.enterPassword("allianz@2018");
+		login.clickLoginButton();
+		quotation = new CreateQuotation(driver);
+		Thread.sleep(5000);
+		quotation.clickToCreateQuotation();
+		quotation.addInitialDetails("Individual", getData("market_code", 1));
+		quotation.clickCheckBox_WithCustomerDetails();
+
+		//quotation.clickCheckBox_WithoutCustomerDetails();
+
+		quotation.addInitialCustomerDetails("Miss", "865360920V");
+		quotation.addCustomerDetails("Lilani","Silva","071463764377","300/A","Rajapihilla");
+
+		driver.quit();
 	}
 	      
     
