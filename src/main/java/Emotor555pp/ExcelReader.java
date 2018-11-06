@@ -29,7 +29,7 @@ public class ExcelReader {
 
 	}
 	
-	public static String getData(String key, int row) {
+	public static String excelData(String key, int row) {
 		
 
 		return workbook.getSheetAt(0).getRow(row).getCell(getColumnId(key)).toString(); 

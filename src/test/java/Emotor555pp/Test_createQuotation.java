@@ -49,24 +49,24 @@ public class Test_createQuotation {
 		quotation.clickToCreateQuotation();
 		
 		//Add initial details
-		quotation.addInitialDetails(getData("customer", 1), getData("market_code", 1));
+		quotation.addInitialDetails(excelData("customer", 1), excelData("market_code", 1));
 		
 		//Tick checkbox 'With customer details'
 		quotation.clickCheckBox_WithCustomerDetails();
 
 		//add initial customer details
-		quotation.addInitialCustomerDetails(getData("salutation", 1), getData("nic", 1));
+		quotation.addInitialCustomerDetails(excelData("salutation", 1), excelData("nic", 1));
 		
 		//Add customer details
-		quotation.addCustomerDetails(getData("first_name", 1),getData("last_name", 1),getData("contact_number_1", 1),getData("house_number", 1),getData("street", 1));
+		quotation.addCustomerDetails(excelData("first_name", 1),excelData("last_name", 1),excelData("contact_number_1", 1),excelData("house_number", 1),excelData("street", 1));
 		
 		
 		//Add vehicle details
-		quotation.addVehicleDetails("CP", "KR-9691", "Passenger Car", "PERODUA", "AMIZHR", "4", "2012", "Private");
+		quotation.addVehicleDetails(excelData("region", 1), excelData("car_number", 1), excelData("vehicle_type", 1), excelData("vehicle_make", 1), excelData("vehicle_model", 1), excelData("seat_capacity", 1), excelData("YOM", 1), excelData("vehicle_usage", 1));
 		
 		
 		//Add quotation details
-		quotation.addQuotationDetails("2,300,000", "6", "Standard", "Allianz Standard Package", "2000","60%");
+		quotation.addQuotationDetails(excelData("insured_amount", 1), excelData("driving_exp", 1), excelData("garage", 1), excelData("package_type", 1), excelData("voluntary_excess", 1),excelData("NCD", 1));
 		
 		
 		//Submit
