@@ -16,7 +16,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class LoginpageTest {
+public class Test_createQuotation {
 	private WebDriver driver;
 	private String actualTittle;
 	private String expectedTittle;
