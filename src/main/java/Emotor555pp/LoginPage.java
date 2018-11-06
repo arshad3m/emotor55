@@ -42,6 +42,14 @@ public String titleVerification()
 	return driver.getTitle();
 }
 
+public void loginToEmotor(String username, String password) {
+	
+	enterUsername(username);
+	enterPassword(password);
+	clickLoginButton();
+	
+}
+
 /*public void quiteDriver()
 {
  driver.quit();

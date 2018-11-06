@@ -3,6 +3,7 @@ package Emotor555pp;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,15 +24,21 @@ public class utilities {
 	public static void WaitForDropDown(WebDriver driver, By by) {
 		WebDriverWait wait1 = new WebDriverWait(driver, 30);
 		wait1.until(ExpectedConditions.elementToBeClickable(by));
+		
+
 	}
 	
 	
 	
 	//click methods
 	public static void ClickElement(WebDriver driver, By element) {
-		WebDriverWait wait=new WebDriverWait(driver, 30);
+		WebDriverWait wait=new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+		
+		
+
 	}
+	
 	
 	
 	public static void ClickElement(WebDriver driver, WebElement element) {
@@ -64,7 +71,9 @@ public class utilities {
 	//Enter value
 	public static void EnterValue(WebDriver driver,By element, String value) {
 		WebDriverWait wait=new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.elementToBeClickable(element)).click();
 		wait.until(ExpectedConditions.presenceOfElementLocated(element)).sendKeys(value);
+
 	}
 	
 	
@@ -73,6 +82,13 @@ public class utilities {
 	public static void SelectByVisibleText(WebDriver driver, WebElement element, String text) {
 		WaitForDropDown(driver, element);
 		Select select = new Select (element);
+	    select.selectByVisibleText(text);
+	}
+	
+	
+	public static void SelectByVisibleText(WebDriver driver, By element, String text) {
+		WaitForDropDown(driver, element);
+		Select select = new Select (driver.findElement(element));
 	    select.selectByVisibleText(text);
 	}
 	

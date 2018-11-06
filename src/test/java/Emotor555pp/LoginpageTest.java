@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -35,26 +36,49 @@ public class LoginpageTest {
 	@Test
 	public void testCreateQuotation() throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException {
 		login = new LoginPage(driver);
+		quotation = new CreateQuotation(driver);
 		ExcelReader xxx=new ExcelReader("");
-		System.out.println(getData("market_code", 1)+".........arshad");
 		
 		
 		//login to page
-		login.enterUsername("T220");
-		login.enterPassword("allianz@2018");
-		login.clickLoginButton();
-		quotation = new CreateQuotation(driver);
+		login.loginToEmotor("T220", "allianz@2018");
+		
 		Thread.sleep(5000);
+		
+		//Click create quoation
 		quotation.clickToCreateQuotation();
-		quotation.addInitialDetails("Individual", getData("market_code", 1));
+		
+		//Add initial details
+		quotation.addInitialDetails(getData("customer", 1), getData("market_code", 1));
+		
+		//Tick checkbox 'With customer details'
 		quotation.clickCheckBox_WithCustomerDetails();
 
-		//quotation.clickCheckBox_WithoutCustomerDetails();
+		//add initial customer details
+		quotation.addInitialCustomerDetails(getData("salutation", 1), getData("nic", 1));
+		
+		//Add customer details
+		quotation.addCustomerDetails(getData("first_name", 1),getData("last_name", 1),getData("contact_number_1", 1),getData("house_number", 1),getData("street", 1));
+		
+		
+		//Add vehicle details
+		quotation.addVehicleDetails("CP", "KR-9691", "Passenger Car", "PERODUA", "AMIZHR", "4", "2012", "Private");
+		
+		
+		//Add quotation details
+		quotation.addQuotationDetails("2,300,000", "6", "Standard", "Allianz Standard Package", "2000","60%");
+		
+		
+		//Submit
+		quotation.submitQuotation();
+		
+		//Generate quotation
+		quotation.generateQuotation();
+		
+		//Assert Quotation is generated
+		Assert.assertEquals(true, quotation.checkQuotationIsGenerated());
 
-		quotation.addInitialCustomerDetails("Miss", "865360920V");
-		quotation.addCustomerDetails("Lilani","Silva","071463764377","300/A","Rajapihilla");
-
-		driver.quit();
+		//driver.quit();
 	}
 	      
     
