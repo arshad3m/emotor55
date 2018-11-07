@@ -10,9 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 
 public class LoginPage {
-	//private WebElement username;
-	//private WebElement password;
-	//private WebElement LoginButton;
+
 	WebDriver driver;
 	By username=By.xpath("//*[@id=\"loginform\"]/div[1]/div/input");
     By password=By.xpath("//*[@id=\"loginform\"]/div[2]/div/input");

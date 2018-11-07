@@ -13,73 +13,92 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class Test_createQuotation {
 	private WebDriver driver;
-	private String actualTittle;
-	private String expectedTittle;
 	private LoginPage login;
 	private CreateQuotation quotation;
+	int i=0;
+	
+	
 
     
-	@BeforeTest
+	@BeforeMethod
 	public void setup(){
 		System.setProperty("webdriver.chrome.driver", "src\\main\\java\\Resources\\chromedriver.exe");
 		driver = new ChromeDriver();
-		driver.get("http://192.168.128.68:8081/emotor/");
-		driver.manage().window().maximize();
+		i++;
 
 	}
 	
-	@Test
-	public void testCreateQuotation() throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException {
-		login = new LoginPage(driver);
-		quotation = new CreateQuotation(driver);
-		ExcelReader xxx=new ExcelReader("");
-		
-		
-		//login to page
-		login.loginToEmotor("T220", "allianz@2018");
-		
-		Thread.sleep(5000);
-		
-		//Click create quoation
-		quotation.clickToCreateQuotation();
-		
-		//Add initial details
-		quotation.addInitialDetails(excelData("customer", 1), excelData("market_code", 1));
-		
-		//Tick checkbox 'With customer details'
-		quotation.clickCheckBox_WithCustomerDetails();
+	@Test(invocationCount = 2)
+	public void testCreateQuotation()throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException {
+		  
 
-		//add initial customer details
-		quotation.addInitialCustomerDetails(excelData("salutation", 1), excelData("nic", 1));
-		
-		//Add customer details
-		quotation.addCustomerDetails(excelData("first_name", 1),excelData("last_name", 1),excelData("contact_number_1", 1),excelData("house_number", 1),excelData("street", 1));
-		
-		
-		//Add vehicle details
-		quotation.addVehicleDetails(excelData("region", 1), excelData("car_number", 1), excelData("vehicle_type", 1), excelData("vehicle_make", 1), excelData("vehicle_model", 1), excelData("seat_capacity", 1), excelData("YOM", 1), excelData("vehicle_usage", 1));
-		
-		
-		//Add quotation details
-		quotation.addQuotationDetails(excelData("insured_amount", 1), excelData("driving_exp", 1), excelData("garage", 1), excelData("package_type", 1), excelData("voluntary_excess", 1),excelData("NCD", 1));
-		
-		
-		//Submit
-		quotation.submitQuotation();
-		
-		//Generate quotation
-		quotation.generateQuotation();
-		
-		//Assert Quotation is generated
-		Assert.assertEquals(true, quotation.checkQuotationIsGenerated());
+			System.out.println("I before increment............"+i);
+			driver.get("http://192.168.128.68:8081/emotor/");
+			driver.manage().window().maximize();
+			
+			login = new LoginPage(driver);
+			quotation = new CreateQuotation(driver);
+			ExcelReader xxx = new ExcelReader("");
 
-		//driver.quit();
+			// login to page
+			login.loginToEmotor("T220", "allianz@2018");
+
+			Thread.sleep(10000);
+
+			// Click create quoation
+			quotation.clickToCreateQuotation();
+
+			// Add initial details
+			quotation.addInitialDetails(excelData("customer", i), excelData("market_code", i));
+
+			// Tick checkbox 'With customer details'
+			quotation.clickCheckBox_WithCustomerDetails();
+
+			// add initial customer details
+			quotation.addInitialCustomerDetails(excelData("salutation", i), excelData("nic", i));
+
+			// Add customer details
+			quotation.addCustomerDetails(excelData("first_name", i), excelData("last_name", i),
+					excelData("contact_number_1", 1), excelData("house_number", 1), excelData("street", 1));
+
+			// Add vehicle details
+			quotation.addVehicleDetails(excelData("region", i), excelData("car_number", i),
+					excelData("vehicle_type", i), excelData("vehicle_make", i), excelData("vehicle_model", i),
+					excelData("seat_capacity", i), excelData("YOM", i), excelData("vehicle_usage", i));
+
+			// Add quotation details
+			quotation.addQuotationDetails(excelData("insured_amount", i), excelData("driving_exp", i),
+					excelData("garage", i), excelData("package_type", i), excelData("voluntary_excess", i),
+					excelData("NCD", i));
+
+			// Submit
+			quotation.submitQuotation();
+
+			// Generate quotation
+			quotation.generateQuotation();
+
+			// Assert Quotation is generated
+			Assert.assertEquals(true, quotation.checkQuotationIsGenerated(),"Failed for the following package: "+excelData("package_type", i));
+
+		
 	}
-	      
+	
+	
+	@AfterMethod
+	public void quit() {
+		System.out.println("I increased...." + i);
+		driver.quit();
+
+	}
+	
     
 }
