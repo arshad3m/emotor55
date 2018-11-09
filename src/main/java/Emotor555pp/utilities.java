@@ -63,8 +63,14 @@ public class utilities {
 	public static void ClickElementByXpath(WebDriver driver, String xpath) {
 		WebDriverWait wait=new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(xpath)))).click();
+		
 	}
 	
+	
+	public static void ClickElementById2(WebDriver driver, By element) {
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(element)).click();
+	}
 	
 	
 	
@@ -79,17 +85,44 @@ public class utilities {
 	
 	//Drop down select
 	
-	public static void SelectByVisibleText(WebDriver driver, WebElement element, String text) {
+	public static void SelectByText(WebDriver driver, WebElement element, String text) {
 		WaitForDropDown(driver, element);
 		Select select = new Select (element);
+	    select.selectByVisibleText(text);
+	    
+	}
+	
+	
+	public static void SelectByText(WebDriver driver, By element, String text) {
+		WaitForDropDown(driver, element);
+		Select select = new Select (driver.findElement(element));
 	    select.selectByVisibleText(text);
 	}
 	
 	
-	public static void SelectByVisibleText(WebDriver driver, By element, String text) {
+	public static void SelectByIndex(WebDriver driver, By element, int index) {
 		WaitForDropDown(driver, element);
 		Select select = new Select (driver.findElement(element));
-	    select.selectByVisibleText(text);
+		select.selectByIndex(index);
+	}
+	
+	public static void SelectByTextIgnoreCase(WebDriver driver, By element, String text) {
+		WaitForDropDown(driver, element);
+		Select select = new Select (driver.findElement(element));
+		
+		
+		int index = 0;
+	    for (WebElement option : select.getOptions()) {
+	        if (option.getText().equalsIgnoreCase(text) || option.getText().contains(text))
+	            break;
+	        index++;
+	    }
+	   
+	    if(select.getOptions().size()<=index) {
+	    	select.selectByIndex(1);
+	    }
+	    else
+	    select.selectByIndex(index);
 	}
 	
 	

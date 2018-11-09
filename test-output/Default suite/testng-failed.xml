@@ -5,8 +5,9 @@
     <classes>
       <class name="Emotor555pp.Test_createQuotation">
         <methods>
+          <include name="quit"/>
           <include name="setup"/>
-          <include name="testCreateQuotation"/>
+          <include name="testConfirmQuotation"/>
         </methods>
       </class> <!-- Emotor555pp.Test_createQuotation -->
     </classes>

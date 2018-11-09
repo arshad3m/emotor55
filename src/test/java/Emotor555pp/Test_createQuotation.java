@@ -24,20 +24,21 @@ public class Test_createQuotation {
 	private WebDriver driver;
 	private LoginPage login;
 	private CreateQuotation quotation;
-	int i=0;
+	private ConfirmQuotation quotationToConfirm;
+	int i=2;
 	
 	
 
     
 	@BeforeMethod
-	public void setup(){
+	public void setup() throws EncryptedDocumentException, InvalidFormatException, IOException{
 		System.setProperty("webdriver.chrome.driver", "src\\main\\java\\Resources\\chromedriver.exe");
 		driver = new ChromeDriver();
 		i++;
-
+		ExcelReader xxx = new ExcelReader("");
 	}
 	
-	@Test(invocationCount = 2)
+	@Test(invocationCount = 5,priority=2)
 	public void testCreateQuotation()throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException {
 		  
 
@@ -47,10 +48,10 @@ public class Test_createQuotation {
 			
 			login = new LoginPage(driver);
 			quotation = new CreateQuotation(driver);
-			ExcelReader xxx = new ExcelReader("");
+			//ExcelReader xxx = new ExcelReader("");
 
 			// login to page
-			login.loginToEmotor("T220", "allianz@2018");
+			login.loginToEmotor("T221", "allianz@2018");
 
 			Thread.sleep(10000);
 
@@ -70,10 +71,12 @@ public class Test_createQuotation {
 			quotation.addCustomerDetails(excelData("first_name", i), excelData("last_name", i),
 					excelData("contact_number_1", 1), excelData("house_number", 1), excelData("street", 1));
 
-			// Add vehicle details
+/*			// Add vehicle details
 			quotation.addVehicleDetails(excelData("region", i), excelData("car_number", i),
 					excelData("vehicle_type", i), excelData("vehicle_make", i), excelData("vehicle_model", i),
-					excelData("seat_capacity", i), excelData("YOM", i), excelData("vehicle_usage", i));
+					excelData("seat_capacity", i), excelData("YOM", i), excelData("vehicle_usage", i));*/
+			
+			quotation.addVehicleDetails(excelData("region", i), excelData("car_number", i),excelData("vehicle_usage", i) );
 
 			// Add quotation details
 			quotation.addQuotationDetails(excelData("insured_amount", i), excelData("driving_exp", i),
@@ -92,6 +95,33 @@ public class Test_createQuotation {
 		
 	}
 	
+	//@Test(priority=1)
+	public void testConfirmQuotation() throws InterruptedException {
+		driver.get("http://192.168.128.68:8081/emotor/");
+		driver.manage().window().maximize();
+		
+		login = new LoginPage(driver);
+
+		login.loginToEmotor("T221", "allianz@2018");
+		
+		
+		Thread.sleep(10000);
+
+		quotationToConfirm=new ConfirmQuotation(driver);
+
+		quotationToConfirm.clickToConfirmQuotation();
+		quotationToConfirm.selectQuotationReferenceByVehicleNumber(excelData("car_number", 3));
+		
+
+		quotationToConfirm.selectPolicyStartDate();
+		
+		quotationToConfirm.enterCustomerDetails();
+		
+		quotationToConfirm.tickAgreedToConvertQuotationToPolicy();
+		
+		Thread.sleep(10000);
+
+	}
 	
 	@AfterMethod
 	public void quit() {
