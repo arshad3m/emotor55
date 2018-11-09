@@ -25,7 +25,7 @@ public class Test_createQuotation {
 	private LoginPage login;
 	private CreateQuotation quotation;
 	private ConfirmQuotation quotationToConfirm;
-	int i=2;
+	int i=3;
 	
 	
 
@@ -38,7 +38,7 @@ public class Test_createQuotation {
 		ExcelReader xxx = new ExcelReader("");
 	}
 	
-	@Test(invocationCount = 5,priority=2)
+	//@Test(invocationCount = 1,priority=2)
 	public void testCreateQuotation()throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException {
 		  
 
@@ -95,7 +95,7 @@ public class Test_createQuotation {
 		
 	}
 	
-	//@Test(priority=1)
+	@Test(priority=1)
 	public void testConfirmQuotation() throws InterruptedException {
 		driver.get("http://192.168.128.68:8081/emotor/");
 		driver.manage().window().maximize();
