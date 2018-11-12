@@ -1,88 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" ignored="0" total="1" passed="0">
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="25055" started-at="2018-11-09T06:19:42Z" finished-at="2018-11-09T06:20:07Z">
+  <suite name="Default suite" duration-ms="52833" started-at="2018-11-12T09:18:43Z" finished-at="2018-11-12T09:19:35Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="25055" started-at="2018-11-09T06:19:42Z" finished-at="2018-11-09T06:20:07Z">
+    <test name="Default test" duration-ms="52833" started-at="2018-11-12T09:18:43Z" finished-at="2018-11-12T09:19:35Z">
       <class name="Emotor555pp.Test_createQuotation">
-        <test-method status="PASS" signature="setup()[pri:0, instance:Emotor555pp.Test_createQuotation@57baeedf]" name="setup" is-config="true" duration-ms="4629" started-at="2018-11-09T06:19:42Z" finished-at="2018-11-09T06:19:46Z">
+        <test-method status="PASS" signature="setup()[pri:0, instance:Emotor555pp.Test_createQuotation@57baeedf]" name="setup" is-config="true" duration-ms="6960" started-at="2018-11-12T09:18:43Z" finished-at="2018-11-12T09:18:49Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="FAIL" signature="testConfirmQuotation()[pri:1, instance:Emotor555pp.Test_createQuotation@57baeedf]" name="testConfirmQuotation" duration-ms="19579" started-at="2018-11-09T06:19:46Z" finished-at="2018-11-09T06:20:06Z">
-          <exception class="org.openqa.selenium.WebDriverException">
-            <message>
-              <![CDATA[unknown error: Element <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="date-range-from" name="start" ng-model="firstdate" placeholder="Policy Start Date"> is not clickable at point (1046, 214). Other element would receive the click: <div class="sweet-overlay" tabindex="-1" style="opacity: 1.4; display: block;"></div>
-  (Session info: chrome=70.0.3538.77)
-  (Driver info: chromedriver=2.43.600210 (68dcf5eebde37173d4027fa8635e332711d2874a),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-Build info: version: '3.13.0', revision: '2f0d292', time: '2018-06-25T15:24:21.231Z'
-System info: host: 'AZ1400BATIGENOS', ip: '10.71.65.164', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.43.600210 (68dcf5eebde371..., userDataDir: C:\Users\AUX_AR~1\AppData\L...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:62408}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 70.0.3538.77, webStorageEnabled: true}
-Session ID: ba02ce0c7c644febc6677db951976712]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.WebDriverException: unknown error: Element <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="date-range-from" name="start" ng-model="firstdate" placeholder="Policy Start Date"> is not clickable at point (1046, 214). Other element would receive the click: <div class="sweet-overlay" tabindex="-1" style="opacity: 1.4; display: block;"></div>
-  (Session info: chrome=70.0.3538.77)
-  (Driver info: chromedriver=2.43.600210 (68dcf5eebde37173d4027fa8635e332711d2874a),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-Build info: version: '3.13.0', revision: '2f0d292', time: '2018-06-25T15:24:21.231Z'
-System info: host: 'AZ1400BATIGENOS', ip: '10.71.65.164', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.43.600210 (68dcf5eebde371..., userDataDir: C:\Users\AUX_AR~1\AppData\L...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:62408}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 70.0.3538.77, webStorageEnabled: true}
-Session ID: ba02ce0c7c644febc6677db951976712
-at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-at java.lang.reflect.Constructor.newInstance(Unknown Source)
-at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
-at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
-at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
-at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
-at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:548)
-at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:276)
-at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:83)
-at Emotor555pp.utilities.ClickElement(utilities.java:36)
-at Emotor555pp.ConfirmQuotation.selectPolicyStartDate(ConfirmQuotation.java:51)
-at Emotor555pp.Test_createQuotation.testConfirmQuotation(Test_createQuotation.java:116)
-at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-at java.lang.reflect.Method.invoke(Unknown Source)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
-at org.testng.internal.Invoker.invokeMethod(Invoker.java:580)
-at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
-at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
-at org.testng.TestRunner.privateRun(TestRunner.java:648)
-at org.testng.TestRunner.run(TestRunner.java:505)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
-at org.testng.SuiteRunner.run(SuiteRunner.java:364)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
-at org.testng.TestNG.runSuites(TestNG.java:1049)
-at org.testng.TestNG.run(TestNG.java:1017)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.WebDriverException -->
+        <test-method status="PASS" signature="testConfirmQuotation()[pri:2, instance:Emotor555pp.Test_createQuotation@57baeedf]" name="testConfirmQuotation" duration-ms="45070" started-at="2018-11-12T09:18:49Z" finished-at="2018-11-12T09:19:35Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testConfirmQuotation -->
-        <test-method status="PASS" signature="quit()[pri:0, instance:Emotor555pp.Test_createQuotation@57baeedf]" name="quit" is-config="true" duration-ms="823" started-at="2018-11-09T06:20:06Z" finished-at="2018-11-09T06:20:07Z">
+        <test-method status="PASS" signature="quit()[pri:0, instance:Emotor555pp.Test_createQuotation@57baeedf]" name="quit" is-config="true" duration-ms="782" started-at="2018-11-12T09:19:35Z" finished-at="2018-11-12T09:19:35Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- quit -->

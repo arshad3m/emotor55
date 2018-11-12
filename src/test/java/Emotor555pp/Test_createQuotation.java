@@ -46,7 +46,7 @@ public class Test_createQuotation {
 	}
 	
 	//@Test(invocationCount = 1,priority=1)
-	public void testCreateQuotation()throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException {
+	public void testCreateQuotationWithCustomerDetails()throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException {
 		  
 
 			Thread.sleep(10000);
@@ -87,6 +87,12 @@ public class Test_createQuotation {
 		
 	}
 	
+	
+	public void testCreateQuotationWithoutCustomerDetails() {
+		
+	}
+	
+	
 	@Test(priority=2)
 	public void testConfirmQuotation() throws InterruptedException {
 		
@@ -97,27 +103,39 @@ public class Test_createQuotation {
 		quotationToConfirm=new ConfirmQuotation(driver);
 
 		quotationToConfirm.clickToConfirmQuotation();
+		
+		//Select reference by car number
 		quotationToConfirm.selectQuotationReferenceByVehicleNumber(excelData("car_number", 3));
 		
-		//quotationToConfirm.selectFuturePolicyDate();
-
+		//Select policy start date
 		quotationToConfirm.selectPolicyStartDate(Integer.parseInt(excelData("policy_start_date", 3)));
 		
+		//Enter customer details
 		quotationToConfirm.enterCustomerDetails();
 		
+		//Convert quotation to policy
 		quotationToConfirm.tickAgreedToConvertQuotationToPolicy();
 		
 		Thread.sleep(5000);
 
+		//Confirm quotation
 		quotationToConfirm.clickConfirmQuotationButton();
 		
 		Thread.sleep(5000);
 
+		//Click button to proceed
 		quotationToConfirm.clickProceedButton();
+		
+		//Click button to convert the policy
+		quotationToConfirm.clickConvertToPolicyButton();
 		
 		Thread.sleep(10000);
 
 	}
+	
+	
+
+	
 	
 	@AfterMethod
 	public void quit() {

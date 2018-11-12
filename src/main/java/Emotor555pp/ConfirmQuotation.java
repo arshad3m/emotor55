@@ -122,9 +122,8 @@ public class ConfirmQuotation {
 	
 	public void tickAgreedToConvertQuotationToPolicy() {
 				
-		//driver.switchTo().defaultContent(); 
+ 
 		WebElement web = driver.findElement(By.xpath("//input[@id='exampleCheck1']"));
-	
 		ClickByFocusingOnTheElement(driver, web);
 		
 	}
@@ -132,15 +131,6 @@ public class ConfirmQuotation {
 	
 	public void clickConfirmQuotationButton() {
 		WebElement confirm_button = driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/ng-view/div[2]/div[1]/div/div/div/div[5]/div[1]/div[1]/div/div/button[1]"));
-		//WebElement confirmQuotation_button = driver.findElement(By.cssSelector("button[ng-class='postInsuredProperties()']"));
-		//WebElement confirm_button = driver.findElement(By.partialLinkText("CONFIRM"));
-		
-/*		Actions  action = new Actions(driver);
-		action.moveToElement(confirm_button).click().build().perform();
-		
-		driver.switchTo().defaultContent();
-		((JavascriptExecutor)driver).executeScript("arguments[0].click();", confirm_button);*/
-
 		ClickElement(driver, confirm_button);
 		
 	}
@@ -148,10 +138,16 @@ public class ConfirmQuotation {
 	
 	public void clickProceedButton() {
 		
-		By proceed_button = By.xpath("//button[@class='btn btn-success'] and //*[text()='PROCEED']");
-		
+		By proceed_button = By.xpath("/html/body/div[2]/div[2]/div/ng-view/div[2]/div[1]/div/div/div/div[5]/div[2]/div[1]/div/div/button");
 		ClickElement(driver, proceed_button);
 		
+	}
+	
+	
+	public void clickConvertToPolicyButton() {
+		
+		By convert_to_policy_button = By.xpath("/html/body/div[2]/div[2]/div/ng-view/div[2]/div[5]/div/div/div[3]/div/div[1]/button");
+		ClickElement(driver, convert_to_policy_button);
 	}
 	
 	
