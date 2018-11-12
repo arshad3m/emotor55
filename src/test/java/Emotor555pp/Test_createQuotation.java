@@ -36,22 +36,18 @@ public class Test_createQuotation {
 		driver = new ChromeDriver();
 		i++;
 		ExcelReader xxx = new ExcelReader("");
+		
+		driver.get("http://192.168.128.68:8081/emotor/");
+		driver.manage().window().maximize();
+		
+		login = new LoginPage(driver);
+
+		login.loginToEmotor("T221", "allianz@2018");
 	}
 	
-	//@Test(invocationCount = 1,priority=2)
+	//@Test(invocationCount = 1,priority=1)
 	public void testCreateQuotation()throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException {
 		  
-
-			System.out.println("I before increment............"+i);
-			driver.get("http://192.168.128.68:8081/emotor/");
-			driver.manage().window().maximize();
-			
-			login = new LoginPage(driver);
-			quotation = new CreateQuotation(driver);
-			//ExcelReader xxx = new ExcelReader("");
-
-			// login to page
-			login.loginToEmotor("T221", "allianz@2018");
 
 			Thread.sleep(10000);
 
@@ -71,11 +67,7 @@ public class Test_createQuotation {
 			quotation.addCustomerDetails(excelData("first_name", i), excelData("last_name", i),
 					excelData("contact_number_1", 1), excelData("house_number", 1), excelData("street", 1));
 
-/*			// Add vehicle details
-			quotation.addVehicleDetails(excelData("region", i), excelData("car_number", i),
-					excelData("vehicle_type", i), excelData("vehicle_make", i), excelData("vehicle_model", i),
-					excelData("seat_capacity", i), excelData("YOM", i), excelData("vehicle_usage", i));*/
-			
+			// Add vehicle details
 			quotation.addVehicleDetails(excelData("region", i), excelData("car_number", i),excelData("vehicle_usage", i) );
 
 			// Add quotation details
@@ -95,14 +87,9 @@ public class Test_createQuotation {
 		
 	}
 	
-	@Test(priority=1)
+	@Test(priority=2)
 	public void testConfirmQuotation() throws InterruptedException {
-		driver.get("http://192.168.128.68:8081/emotor/");
-		driver.manage().window().maximize();
 		
-		login = new LoginPage(driver);
-
-		login.loginToEmotor("T221", "allianz@2018");
 		
 		
 		Thread.sleep(10000);
@@ -112,12 +99,21 @@ public class Test_createQuotation {
 		quotationToConfirm.clickToConfirmQuotation();
 		quotationToConfirm.selectQuotationReferenceByVehicleNumber(excelData("car_number", 3));
 		
+		//quotationToConfirm.selectFuturePolicyDate();
 
-		quotationToConfirm.selectPolicyStartDate();
+		quotationToConfirm.selectPolicyStartDate(Integer.parseInt(excelData("policy_start_date", 3)));
 		
 		quotationToConfirm.enterCustomerDetails();
 		
 		quotationToConfirm.tickAgreedToConvertQuotationToPolicy();
+		
+		Thread.sleep(5000);
+
+		quotationToConfirm.clickConfirmQuotationButton();
+		
+		Thread.sleep(5000);
+
+		quotationToConfirm.clickProceedButton();
 		
 		Thread.sleep(10000);
 

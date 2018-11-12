@@ -1,6 +1,7 @@
 package Emotor555pp;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -67,11 +68,17 @@ public class utilities {
 	}
 	
 	
-	public static void ClickElementById2(WebDriver driver, By element) {
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(element)).click();
+	//click action
+	public static void ClickByFocusingOnTheElement(WebDriver driver, WebElement element) {
+		
+		Actions action = new Actions(driver);
+		//action.moveToElement(element).click().build().perform();
+		action.moveToElement(element).build().perform();
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
 	}
 	
+	
+
 	
 	
 	//Enter value
