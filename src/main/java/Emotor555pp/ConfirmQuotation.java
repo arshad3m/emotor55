@@ -59,7 +59,6 @@ public class ConfirmQuotation {
 		
 		ClickElement(driver, dateFrom);
 		
-		//Thread.sleep(2000);
 		
 		int i = 0;
 		List <WebElement> dates=driver.findElements(By.xpath("//table[@class='table-condensed']//*[text()="+date+"]"));
