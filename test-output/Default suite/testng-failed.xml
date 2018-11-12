@@ -7,7 +7,7 @@
         <methods>
           <include name="quit"/>
           <include name="setup"/>
-          <include name="testConfirmQuotation"/>
+          <include name="testCreateQuotationWithoutCustomerDetails"/>
         </methods>
       </class> <!-- Emotor555pp.Test_createQuotation -->
     </classes>

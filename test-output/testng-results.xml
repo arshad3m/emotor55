@@ -1,21 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="1" ignored="0" total="1" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="52833" started-at="2018-11-12T09:18:43Z" finished-at="2018-11-12T09:19:35Z">
+  <suite name="Default suite" duration-ms="79089" started-at="2018-11-12T10:49:02Z" finished-at="2018-11-12T10:50:21Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="52833" started-at="2018-11-12T09:18:43Z" finished-at="2018-11-12T09:19:35Z">
+    <test name="Default test" duration-ms="79089" started-at="2018-11-12T10:49:02Z" finished-at="2018-11-12T10:50:21Z">
       <class name="Emotor555pp.Test_createQuotation">
-        <test-method status="PASS" signature="setup()[pri:0, instance:Emotor555pp.Test_createQuotation@57baeedf]" name="setup" is-config="true" duration-ms="6960" started-at="2018-11-12T09:18:43Z" finished-at="2018-11-12T09:18:49Z">
+        <test-method status="PASS" signature="setup()[pri:0, instance:Emotor555pp.Test_createQuotation@57baeedf]" name="setup" is-config="true" duration-ms="6395" started-at="2018-11-12T10:49:02Z" finished-at="2018-11-12T10:49:09Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="testConfirmQuotation()[pri:2, instance:Emotor555pp.Test_createQuotation@57baeedf]" name="testConfirmQuotation" duration-ms="45070" started-at="2018-11-12T09:18:49Z" finished-at="2018-11-12T09:19:35Z">
+        <test-method status="FAIL" signature="testCreateQuotationWithoutCustomerDetails()[pri:0, instance:Emotor555pp.Test_createQuotation@57baeedf]" name="testCreateQuotationWithoutCustomerDetails" duration-ms="71892" started-at="2018-11-12T10:49:09Z" finished-at="2018-11-12T10:50:20Z">
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for element to be clickable: [[ChromeDriver: chrome on XP (dc12e232e5450d8602b0eb2da70cad4e)] -> id: salutation1] (tried for 50 second(s) with 500 milliseconds interval)
+Build info: version: '3.13.0', revision: '2f0d292', time: '2018-06-25T15:24:21.231Z'
+System info: host: 'AZ1400BATIGENOS', ip: '10.71.65.164', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.43.600210 (68dcf5eebde371..., userDataDir: C:\Users\AUX_AR~1\AppData\L...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:49820}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 70.0.3538.77, webStorageEnabled: true}
+Session ID: dc12e232e5450d8602b0eb2da70cad4e]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: [[ChromeDriver: chrome on XP (dc12e232e5450d8602b0eb2da70cad4e)] -> id: salutation1] (tried for 50 second(s) with 500 milliseconds interval)
+Build info: version: '3.13.0', revision: '2f0d292', time: '2018-06-25T15:24:21.231Z'
+System info: host: 'AZ1400BATIGENOS', ip: '10.71.65.164', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.43.600210 (68dcf5eebde371..., userDataDir: C:\Users\AUX_AR~1\AppData\L...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:49820}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 70.0.3538.77, webStorageEnabled: true}
+Session ID: dc12e232e5450d8602b0eb2da70cad4e
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:81)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:271)
+at Emotor555pp.utilities.WaitForDropDown(utilities.java:21)
+at Emotor555pp.utilities.SelectByText(utilities.java:96)
+at Emotor555pp.CreateQuotation.addInitialCustomerDetails(CreateQuotation.java:88)
+at Emotor555pp.Test_createQuotation.testCreateQuotationWithoutCustomerDetails(Test_createQuotation.java:106)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:580)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testConfirmQuotation -->
-        <test-method status="PASS" signature="quit()[pri:0, instance:Emotor555pp.Test_createQuotation@57baeedf]" name="quit" is-config="true" duration-ms="782" started-at="2018-11-12T09:19:35Z" finished-at="2018-11-12T09:19:35Z">
+        </test-method> <!-- testCreateQuotationWithoutCustomerDetails -->
+        <test-method status="PASS" signature="quit()[pri:0, instance:Emotor555pp.Test_createQuotation@57baeedf]" name="quit" is-config="true" duration-ms="777" started-at="2018-11-12T10:50:20Z" finished-at="2018-11-12T10:50:21Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- quit -->

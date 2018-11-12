@@ -41,6 +41,7 @@ public class Test_createQuotation {
 		driver.manage().window().maximize();
 		
 		login = new LoginPage(driver);
+		quotation= new CreateQuotation(driver);
 
 		login.loginToEmotor("T221", "allianz@2018");
 	}
@@ -94,8 +95,12 @@ public class Test_createQuotation {
 		// Click create quoation
 		quotation.clickToCreateQuotation();
 
+		
 		// Add initial details
 		quotation.addInitialDetails(excelData("customer", i), excelData("market_code", i));
+		
+		Thread.sleep(5000);
+		
 		quotation.clickCheckBox_WithoutCustomerDetails();
 		quotation.addInitialCustomerDetails(excelData("salutation", i), excelData("nic", i));
 		quotation.addCustomerDetails(excelData("first_name", i), excelData("last_name", i),
