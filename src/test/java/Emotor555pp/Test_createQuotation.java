@@ -87,13 +87,39 @@ public class Test_createQuotation {
 		
 	}
 	
-	
-	public void testCreateQuotationWithoutCustomerDetails() {
+	@Test
+	public void testCreateQuotationWithoutCustomerDetails() throws InterruptedException {
+		Thread.sleep(10000);
+
+		// Click create quoation
+		quotation.clickToCreateQuotation();
+
+		// Add initial details
+		quotation.addInitialDetails(excelData("customer", i), excelData("market_code", i));
+		quotation.clickCheckBox_WithoutCustomerDetails();
+		quotation.addInitialCustomerDetails(excelData("salutation", i), excelData("nic", i));
+		quotation.addCustomerDetails(excelData("first_name", i), excelData("last_name", i),
+				excelData("contact_number_1", 1), excelData("house_number", 1), excelData("street", 1));
+		quotation.addVehicleDetails(excelData("region", i), excelData("car_number", i),excelData("vehicle_usage", i) );
+
+		// Add quotation details
+		quotation.addQuotationDetails(excelData("insured_amount", i), excelData("driving_exp", i),
+				excelData("garage", i), excelData("package_type", i), excelData("voluntary_excess", i),
+				excelData("NCD", i));
+
+		// Submit
+		quotation.submitQuotation();
+
+		// Generate quotation
+		quotation.generateQuotation();
+
+		// Assert Quotation is generated
+		Assert.assertEquals(true, quotation.checkQuotationIsGenerated(),"Failed for the following package: "+excelData("package_type", i));
 		
 	}
 	
 	
-	@Test(priority=2)
+	//@Test(priority=2)
 	public void testConfirmQuotation() throws InterruptedException {
 		
 		
