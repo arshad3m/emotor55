@@ -2,24 +2,24 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="57437" started-at="2018-11-16T04:15:24Z" finished-at="2018-11-16T04:16:22Z">
+  <suite name="Default suite" duration-ms="58462" started-at="2018-11-16T04:26:56Z" finished-at="2018-11-16T04:27:55Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="57437" started-at="2018-11-16T04:15:24Z" finished-at="2018-11-16T04:16:22Z">
-      <class name="Emotor555pp.Test_Quotation_Smoke">
-        <test-method status="PASS" signature="setup()[pri:0, instance:Emotor555pp.Test_Quotation_Smoke@57baeedf]" name="setup" is-config="true" duration-ms="6988" started-at="2018-11-16T04:15:24Z" finished-at="2018-11-16T04:15:31Z">
+    <test name="Default test" duration-ms="58462" started-at="2018-11-16T04:26:56Z" finished-at="2018-11-16T04:27:55Z">
+      <class name="lk.allianz.emotortests.Test_Quotation_Smoke">
+        <test-method status="PASS" signature="setup()[pri:0, instance:lk.allianz.emotortests.Test_Quotation_Smoke@57baeedf]" name="setup" is-config="true" duration-ms="8023" started-at="2018-11-16T04:26:56Z" finished-at="2018-11-16T04:27:04Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="testConfirmQuotation()[pri:2, instance:Emotor555pp.Test_Quotation_Smoke@57baeedf]" name="testConfirmQuotation" duration-ms="49518" started-at="2018-11-16T04:15:31Z" finished-at="2018-11-16T04:16:21Z">
+        <test-method status="PASS" signature="testConfirmQuotation()[pri:2, instance:lk.allianz.emotortests.Test_Quotation_Smoke@57baeedf]" name="testConfirmQuotation" duration-ms="49581" started-at="2018-11-16T04:27:04Z" finished-at="2018-11-16T04:27:54Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testConfirmQuotation -->
-        <test-method status="PASS" signature="quit()[pri:0, instance:Emotor555pp.Test_Quotation_Smoke@57baeedf]" name="quit" is-config="true" duration-ms="906" started-at="2018-11-16T04:16:21Z" finished-at="2018-11-16T04:16:22Z">
+        <test-method status="PASS" signature="quit()[pri:0, instance:lk.allianz.emotortests.Test_Quotation_Smoke@57baeedf]" name="quit" is-config="true" duration-ms="836" started-at="2018-11-16T04:27:54Z" finished-at="2018-11-16T04:27:55Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- quit -->
-      </class> <!-- Emotor555pp.Test_Quotation_Smoke -->
+      </class> <!-- lk.allianz.emotortests.Test_Quotation_Smoke -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
