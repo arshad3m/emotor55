@@ -20,12 +20,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class Test_createQuotation {
+public class Test_Quotation_Smoke {
 	private WebDriver driver;
 	private LoginPage login;
 	private CreateQuotation quotation;
 	private ConfirmQuotation quotationToConfirm;
-	int i=3;
+	private DocumentUpload documentUpload;
+	int i=0;
+	int j=0;
 	
 	
 
@@ -35,6 +37,7 @@ public class Test_createQuotation {
 		System.setProperty("webdriver.chrome.driver", "src\\main\\java\\Resources\\chromedriver.exe");
 		driver = new ChromeDriver();
 		i++;
+		j++;
 		ExcelReader xxx = new ExcelReader("");
 		
 		driver.get("http://192.168.128.68:8081/emotor/");
@@ -42,11 +45,15 @@ public class Test_createQuotation {
 		
 		login = new LoginPage(driver);
 		quotation= new CreateQuotation(driver);
+		documentUpload = new DocumentUpload(driver);
+		
 
 		login.loginToEmotor("T221", "allianz@2018");
 	}
 	
-	//@Test(invocationCount = 1,priority=1)
+	
+	//Create quotations with customer details
+	//@Test(invocationCount = 8,priority=1)
 	public void testCreateQuotationWithCustomerDetails()throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException {
 		  
 
@@ -88,7 +95,7 @@ public class Test_createQuotation {
 		
 	}
 	
-	@Test
+	//@Test
 	public void testCreateQuotationWithoutCustomerDetails() throws InterruptedException {
 		Thread.sleep(10000);
 
@@ -124,7 +131,7 @@ public class Test_createQuotation {
 	}
 	
 	
-	//@Test(priority=2)
+	@Test(invocationCount = 1,priority=2)
 	public void testConfirmQuotation() throws InterruptedException {
 		
 		
@@ -135,11 +142,13 @@ public class Test_createQuotation {
 
 		quotationToConfirm.clickToConfirmQuotation();
 		
+		Thread.sleep(5000);
+
 		//Select reference by car number
-		quotationToConfirm.selectQuotationReferenceByVehicleNumber(excelData("car_number", 3));
+		quotationToConfirm.selectQuotationReferenceByVehicleNumber(excelData("car_number", j));
 		
 		//Select policy start date
-		quotationToConfirm.selectPolicyStartDate(Integer.parseInt(excelData("policy_start_date", 3)));
+		quotationToConfirm.selectPolicyStartDate(Integer.parseInt(excelData("policy_start_date", j)));
 		
 		//Enter customer details
 		quotationToConfirm.enterCustomerDetails();
@@ -164,13 +173,44 @@ public class Test_createQuotation {
 
 	}
 	
-	
+	//@Test(priority=1)
+	public void testDocumentUpload() throws InterruptedException {
+		
+		Thread.sleep(10000);
+		
+		documentUpload.clickDocumentUpload();
+		
+		documentUpload.clickUpload();
+		
+		Thread.sleep(8000);
+
+		documentUpload.searchByVehicleNumber();
+		
+		documentUpload.enterSearchText();
+		
+		documentUpload.clickOnSearchButton();
+		
+		Thread.sleep(20000);
+		
+		documentUpload.checkSearchResultsAreShown();
+
+		Thread.sleep(10000);
+		
+		//Click first document
+		documentUpload.clickPendingPolicyDocumentButton(0);
+		
+		Thread.sleep(8000);
+
+		
+		documentUpload.checkMandatoryDocuments(excelData("mandatory_documents", 3));
+		
+		Thread.sleep(20000);
+	}
 
 	
 	
 	@AfterMethod
 	public void quit() {
-		System.out.println("I increased...." + i);
 		driver.quit();
 
 	}

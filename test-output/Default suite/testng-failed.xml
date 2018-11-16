@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Emotor555pp.Test_createQuotation">
+      <class name="Emotor555pp.Test_Quotation_Smoke">
         <methods>
           <include name="quit"/>
+          <include name="testConfirmQuotation"/>
           <include name="setup"/>
-          <include name="testCreateQuotationWithoutCustomerDetails"/>
         </methods>
-      </class> <!-- Emotor555pp.Test_createQuotation -->
+      </class> <!-- Emotor555pp.Test_Quotation_Smoke -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

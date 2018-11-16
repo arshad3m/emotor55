@@ -38,17 +38,27 @@ public class ConfirmQuotation {
 	
 	public void selectQuotationReferenceByVehicleNumber(String vehicle_number) throws InterruptedException {
 		
-		By dd_reference = By.xpath("//*[@id=\"select2-chosen-2\"]");
-		By textBox_search =By.id("s2id_autogen2_search");
+		//By dd_reference = By.xpath("//*[@id=\"select2-chosen-2\"]");
+		By dd_reference = By.xpath("//*[text()='Select Quotation Reference']");
+		
+		//input[starts-with(@id, 'activation:') and contains(@id, ':voId:1')]
+		By textBox_search =By.xpath("//input[starts-with(@id,'s2id_autogen') and @role='combobox']");
+		//By textBox_search =By.xpath("//*[@id=\"s2id_autogen1088_search\"]");
+		
+		List <WebElement> list = driver.findElements(textBox_search);
+		System.out.println(list.size());
+		
+		
 		
 		ClickElement(driver, dd_reference);
 
 		Thread.sleep(2000);
 
 		
-		EnterValue(driver, textBox_search, vehicle_number);
-
-		driver.findElement(textBox_search).sendKeys(Keys.RETURN);
+		//EnterValue(driver, textBox_search, vehicle_number);
+		list.get(0).sendKeys(vehicle_number);
+		
+		list.get(0).sendKeys(Keys.RETURN);
 		
 		Thread.sleep(5000);
 	}
@@ -129,7 +139,8 @@ public class ConfirmQuotation {
 	
 	
 	public void clickConfirmQuotationButton() {
-		WebElement confirm_button = driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/ng-view/div[2]/div[1]/div/div/div/div[5]/div[1]/div[1]/div/div/button[1]"));
+																
+		WebElement confirm_button = driver.findElement(By.xpath("//button[contains(@ng-click,'postInsuredProperties()')]"));
 		ClickElement(driver, confirm_button);
 		
 	}
@@ -137,15 +148,16 @@ public class ConfirmQuotation {
 	
 	public void clickProceedButton() {
 		
-		By proceed_button = By.xpath("/html/body/div[2]/div[2]/div/ng-view/div[2]/div[1]/div/div/div/div[5]/div[2]/div[1]/div/div/button");
-		ClickElement(driver, proceed_button);
+		List <WebElement> list = driver.findElements(By.xpath("//button[contains(@data-toggle,'modal')]"));
+		System.out.println(list.size());
+		ClickElement(driver, list.get(0));
 		
 	}
 	
 	
 	public void clickConvertToPolicyButton() {
 		
-		By convert_to_policy_button = By.xpath("/html/body/div[2]/div[2]/div/ng-view/div[2]/div[5]/div/div/div[3]/div/div[1]/button");
+		By convert_to_policy_button = By.xpath("//button[contains(@ng-click,'proceedtoPolicy()')]");
 		ClickElement(driver, convert_to_policy_button);
 	}
 	
