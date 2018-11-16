@@ -1,7 +1,7 @@
-package Emotor555pp;
+package lk.allianz.emotortests;
 
+import static lk.allianz.emotor.ExcelReader.*;
 import static org.testng.Assert.assertEquals;
-import static Emotor555pp.ExcelReader.*;
 
 import java.io.IOException;
 
@@ -19,6 +19,12 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import lk.allianz.emotor.ConfirmQuotation;
+import lk.allianz.emotor.CreateQuotation;
+import lk.allianz.emotor.DocumentUpload;
+import lk.allianz.emotor.ExcelReader;
+import lk.allianz.emotor.LoginPage;
 
 public class Test_Quotation_Smoke {
 	private WebDriver driver;
@@ -38,7 +44,7 @@ public class Test_Quotation_Smoke {
 		driver = new ChromeDriver();
 		i++;
 		j++;
-		ExcelReader xxx = new ExcelReader("");
+		ExcelReader xxx = new ExcelReader("src\\main\\java\\Resources\\test_data_sheet.xlsx" ,0);
 		
 		driver.get("http://192.168.128.68:8081/emotor/");
 		driver.manage().window().maximize();

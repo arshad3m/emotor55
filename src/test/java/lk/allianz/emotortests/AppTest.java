@@ -1,4 +1,4 @@
-package Emotor555pp;
+package lk.allianz.emotortests;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

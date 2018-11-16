@@ -1,4 +1,4 @@
-package Emotor555pp;
+package lk.allianz.emotor;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-import static Emotor555pp.utilities.*;
+import static lk.allianz.emotor.utilities.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

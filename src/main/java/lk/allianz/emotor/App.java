@@ -1,4 +1,4 @@
-package Emotor555pp;
+package lk.allianz.emotor;
 
 /**
  * Hello world!

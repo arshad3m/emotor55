@@ -1,4 +1,4 @@
-package Emotor555pp;
+package lk.allianz.emotor;
 
 
 import org.openqa.selenium.By;
@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import net.bytebuddy.implementation.bytecode.ByteCodeAppender;
 
-import static Emotor555pp.utilities.*;
+import static lk.allianz.emotor.utilities.*;
 
 import java.util.ArrayList;
 //import org.testng.asserts.Assertion;

@@ -1,4 +1,4 @@
-package Emotor555pp;
+package lk.allianz.emotor;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,11 +20,11 @@ public class ExcelReader {
 	private Iterator<Row> rowIterator;
 	private static Sheet sheet;
 	
-	public ExcelReader (String path) throws EncryptedDocumentException, InvalidFormatException, IOException {
+	public ExcelReader (String path, int sheetIndex) throws EncryptedDocumentException, InvalidFormatException, IOException {
 		this.path = path;
-		path="src\\main\\java\\Resources\\test_data_sheet.xlsx";
+		//path="src\\main\\java\\Resources\\test_data_sheet.xlsx";
 		workbook=WorkbookFactory.create(new File(path));
-		sheet=workbook.getSheetAt(0);
+		sheet=workbook.getSheetAt(sheetIndex);
 		rowIterator = sheet.rowIterator();
 
 	}
