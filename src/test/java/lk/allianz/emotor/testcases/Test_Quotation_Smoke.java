@@ -1,4 +1,4 @@
-package lk.allianz.emotortests;
+package lk.allianz.emotor.testcases;
 
 import static lk.allianz.emotor.pages.ExcelReader.*;
 import static org.testng.Assert.assertEquals;

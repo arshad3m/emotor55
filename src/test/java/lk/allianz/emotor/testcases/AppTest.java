@@ -1,4 +1,4 @@
-package lk.allianz.emotortests;
+package lk.allianz.emotor.testcases;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
