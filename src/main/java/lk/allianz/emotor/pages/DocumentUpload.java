@@ -1,5 +1,5 @@
-package lk.allianz.emotor;
-import static lk.allianz.emotor.utilities.*;
+package lk.allianz.emotor.pages;
+import static lk.allianz.emotor.pages.utilities.*;
 
 import java.util.List;
 
@@ -46,10 +46,10 @@ public class DocumentUpload {
 	}
 	
 	
-	public void enterSearchText() {
+	public void enterSearchText(String verhicle_number) {
 		
 		By searchText = By.id("searchByPolicy");
-		EnterValue(driver, searchText, "KR-9694");
+		EnterValue(driver, searchText, verhicle_number);
 	}
 	
 	

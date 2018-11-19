@@ -1,6 +1,6 @@
 package lk.allianz.emotortests;
 
-import static lk.allianz.emotor.ExcelReader.*;
+import static lk.allianz.emotor.pages.ExcelReader.*;
 import static org.testng.Assert.assertEquals;
 
 import java.io.IOException;
@@ -17,14 +17,16 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import lk.allianz.emotor.ConfirmQuotation;
-import lk.allianz.emotor.CreateQuotation;
-import lk.allianz.emotor.DocumentUpload;
-import lk.allianz.emotor.ExcelReader;
-import lk.allianz.emotor.LoginPage;
+import lk.allianz.emotor.pages.ConfirmQuotation;
+import lk.allianz.emotor.pages.CreateQuotation;
+import lk.allianz.emotor.pages.DocumentUpload;
+import lk.allianz.emotor.pages.ExcelReader;
+import lk.allianz.emotor.pages.LoginPage;
+import lk.allianz.emotor.pages.ReviseQuotation;
 
 public class Test_Quotation_Smoke {
 	private WebDriver driver;
@@ -32,37 +34,36 @@ public class Test_Quotation_Smoke {
 	private CreateQuotation quotation;
 	private ConfirmQuotation quotationToConfirm;
 	private DocumentUpload documentUpload;
+	private ReviseQuotation revise;
 	int i=0;
 	int j=0;
+	int k=0;
 	
 	
 
     
 	@BeforeMethod
 	public void setup() throws EncryptedDocumentException, InvalidFormatException, IOException{
+		
+
+		ExcelReader xxx = new ExcelReader("src\\main\\java\\Resources\\test_data_sheet.xlsx" ,0);
 		System.setProperty("webdriver.chrome.driver", "src\\main\\java\\Resources\\chromedriver.exe");
 		driver = new ChromeDriver();
-		i++;
-		j++;
-		ExcelReader xxx = new ExcelReader("src\\main\\java\\Resources\\test_data_sheet.xlsx" ,0);
-		
-		driver.get("http://192.168.128.68:8081/emotor/");
-		driver.manage().window().maximize();
-		
 		login = new LoginPage(driver);
 		quotation= new CreateQuotation(driver);
 		documentUpload = new DocumentUpload(driver);
-		
-
+		revise=new ReviseQuotation(driver);
+		driver.get("http://192.168.128.68:8081/emotor/");
+		driver.manage().window().maximize();
 		login.loginToEmotor("T221", "allianz@2018");
 	}
 	
 	
 	//Create quotations with customer details
-	//@Test(invocationCount = 8,priority=1)
+	//@Test(invocationCount = 2,priority=1)
 	public void testCreateQuotationWithCustomerDetails()throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException {
 		  
-
+		i++;
 			Thread.sleep(10000);
 
 			// Click create quoation
@@ -137,10 +138,10 @@ public class Test_Quotation_Smoke {
 	}
 	
 	
-	@Test(invocationCount = 1,priority=2)
+	@Test(invocationCount = 2,priority=2)
 	public void testConfirmQuotation() throws InterruptedException {
 		
-		
+		j++;
 		
 		Thread.sleep(10000);
 
@@ -158,6 +159,9 @@ public class Test_Quotation_Smoke {
 		
 		//Enter customer details
 		quotationToConfirm.enterCustomerDetails();
+		
+		//Check customer details
+		quotationToConfirm.checkcustomerDetails(excelData("nic", j), excelData("first_name", j), excelData("last_name", j), excelData("contact_number_1", j),excelData("house_number", j),excelData("street", j));
 		
 		//Convert quotation to policy
 		quotationToConfirm.tickAgreedToConvertQuotationToPolicy();
@@ -179,9 +183,9 @@ public class Test_Quotation_Smoke {
 
 	}
 	
-	//@Test(priority=1)
+	//@Test(invocationCount = 2, priority=3)
 	public void testDocumentUpload() throws InterruptedException {
-		
+		k++;
 		Thread.sleep(10000);
 		
 		documentUpload.clickDocumentUpload();
@@ -192,7 +196,7 @@ public class Test_Quotation_Smoke {
 
 		documentUpload.searchByVehicleNumber();
 		
-		documentUpload.enterSearchText();
+		documentUpload.enterSearchText(excelData("car_number", k));
 		
 		documentUpload.clickOnSearchButton();
 		
@@ -208,9 +212,19 @@ public class Test_Quotation_Smoke {
 		Thread.sleep(8000);
 
 		
-		documentUpload.checkMandatoryDocuments(excelData("mandatory_documents", 3));
+		documentUpload.checkMandatoryDocuments(excelData("mandatory_documents", k));
 		
 		Thread.sleep(20000);
+	}
+	
+	
+	//@Test
+	public void testReviseQuotation() throws InterruptedException {
+		Thread.sleep(10000);
+		
+		revise.clickToReviseQuotationPage();
+		revise.selectQuotationReference();
+		
 	}
 
 	

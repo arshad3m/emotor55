@@ -1,4 +1,4 @@
-package lk.allianz.emotor;
+package lk.allianz.emotor.pages;
 
 
 import org.openqa.selenium.By;
@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import net.bytebuddy.implementation.bytecode.ByteCodeAppender;
 
-import static lk.allianz.emotor.utilities.*;
+import static lk.allianz.emotor.pages.utilities.*;
 
 import java.util.ArrayList;
 //import org.testng.asserts.Assertion;
@@ -46,6 +46,8 @@ private WebDriverWait wait;
 		
 	}
 	
+	
+
 
 
 	
@@ -65,7 +67,7 @@ private WebDriverWait wait;
 	    SelectByText(driver,dd_marketerCode,strMarkerterCode);
 	    	
      
-	    //click leasing company dropdown
+/*	    //click leasing company dropdown
 	    ClickElementById(driver, "select2-chosen-3");
 	    
 	    //click leasing company dropdown result
@@ -76,7 +78,7 @@ private WebDriverWait wait;
 	    ClickElementById(driver,"select2-chosen-4");
 	    
 	    //click finance interest dropdown result
-	    ClickElementById(driver,"select2-results-4");
+	    ClickElementById(driver,"select2-results-4");*/
 	    
     
 
@@ -287,6 +289,12 @@ private WebDriverWait wait;
 			state = false;
 		}
 		return state;
+	}
+	
+	
+	public void addExtendedCovers() {
+		
+		
 	}
 
 }

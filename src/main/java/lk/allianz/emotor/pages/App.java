@@ -1,4 +1,4 @@
-package lk.allianz.emotor;
+package lk.allianz.emotor.pages;
 
 /**
  * Hello world!

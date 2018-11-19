@@ -1,4 +1,4 @@
-package lk.allianz.emotor;
+package lk.allianz.emotor.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -6,8 +6,9 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.asserts.SoftAssert;
 
-import static lk.allianz.emotor.utilities.*;
+import static lk.allianz.emotor.pages.utilities.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -32,6 +33,16 @@ public class ConfirmQuotation {
 
 		
 		ClickElement(driver, quotationLink);
+		ClickElement(driver, confirmQuotationLink);
+	}
+	
+	
+	public void clickConfirmQuotationbutton() {
+		By quotationLink = By.linkText("Quotations");
+	    By confirmQuotationLink = By.linkText("Confirm Quotation");
+
+	    Actions action = new Actions(driver);
+	    action.moveToElement(driver.findElement(confirmQuotationLink)).build().perform();
 		ClickElement(driver, confirmQuotationLink);
 	}
 	
@@ -125,7 +136,12 @@ public class ConfirmQuotation {
 		By dd_salutation = By.id("salutation1");
 		By email=By.id("emailaddress1");
 		SelectByText(driver, dd_salutation, "Mr.");
+		
+		String email_address = driver.findElement(email).getAttribute("value");
+		
+		if(email.equals("")) {
 		EnterValue(driver, email, "exampleemail@email.com");
+		}
 	}
 	
 	
@@ -161,6 +177,65 @@ public class ConfirmQuotation {
 		ClickElement(driver, convert_to_policy_button);
 	}
 	
+	
+	
+	public void checkcustomerDetails(String nic_number, String frist_name, String last_name, String contact_number, String house, String street) {
+		
+		By nic=By.xpath("//input[@id='nic1']");
+		By fName= By.xpath("//input[@id='firstName1']");
+		By lName= By.xpath("//input[@id='lastname1']");
+		By contact=By.xpath("//input[@id='contactnumber1']");
+		SoftAssert softassert= new SoftAssert();
+		
+		String nic_value = driver.findElement(nic).getAttribute("value");
+		String fname_value = driver.findElement(fName).getAttribute("value");
+		String lname_value = driver.findElement(lName).getAttribute("value");
+		String contact_value = driver.findElement(contact).getAttribute("value");
+		String house_number = driver.findElement(By.xpath("//input[@id='address1']")).getAttribute("value");
+		String street_value = driver.findElement(By.xpath("//input[@id='address2']")).getAttribute("value");
+		String city_value = driver.findElement(By.xpath("//span[@id='select2-chosen-1']")).getText();
+		
+		//assert NIC
+		softassert.assertEquals(nic_value, nic_number);
+				
+		//assert First name
+		softassert.assertEquals(fname_value, frist_name);
+		
+		//assert Last name
+		softassert.assertEquals(lname_value, last_name);
+		
+		//assert contact
+		softassert.assertEquals(contact_value, contact_number);
+		
+		//assert house number
+		softassert.assertEquals(house_number, house);
+		
+		//assert street value
+		softassert.assertEquals(street_value, street);
+		
+		//assert city value
+		//softassert.assertEquals(city_value, city);
+		
+		System.out.println(house_number);
+		System.out.println(street_value);
+		System.out.println(city_value);
+	
+		softassert.assertAll();
+	}
+	
+	
+	public void checkVechileDetails() {
+		
+	}
+	
+	
+	public void checkQuotationDetails() {
+		
+	}
+	
+	public void checkExtendedCoversDetails() {
+		
+	}
 	
 	
 	

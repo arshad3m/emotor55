@@ -1,4 +1,4 @@
-package lk.allianz.emotor;
+package lk.allianz.emotor.pages;
 
 import java.io.File;
 import java.io.IOException;

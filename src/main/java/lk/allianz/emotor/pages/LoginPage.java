@@ -1,6 +1,6 @@
-package lk.allianz.emotor;
+package lk.allianz.emotor.pages;
 
-import static lk.allianz.emotor.utilities.*;
+import static lk.allianz.emotor.pages.utilities.*;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
