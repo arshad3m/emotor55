@@ -46,8 +46,8 @@ public class Test_Quotation_Smoke {
 	public void setup() throws EncryptedDocumentException, InvalidFormatException, IOException{
 		
 
-		ExcelReader xxx = new ExcelReader("src\\main\\java\\Resources\\test_data_sheet.xlsx" ,0);
-		System.setProperty("webdriver.chrome.driver", "src\\main\\java\\Resources\\chromedriver.exe");
+		ExcelReader xxx = new ExcelReader("src\\main\\java\\lk\\allianz\\emotor\\resources\\test_data_sheet.xlsx" ,0);
+		System.setProperty("webdriver.chrome.driver", "src\\main\\java\\lk\\allianz\\emotor\\resources\\chromedriver.exe");
 		driver = new ChromeDriver();
 		login = new LoginPage(driver);
 		quotation= new CreateQuotation(driver);
@@ -118,7 +118,7 @@ public class Test_Quotation_Smoke {
 		quotation.clickCheckBox_WithoutCustomerDetails();
 		quotation.addInitialCustomerDetails(excelData("salutation", i), excelData("nic", i));
 		quotation.addCustomerDetails(excelData("first_name", i), excelData("last_name", i),
-				excelData("contact_number_1", 1), excelData("house_number", 1), excelData("street", 1));
+				excelData("contact_number_1", i), excelData("house_number", i), excelData("street", i));
 		quotation.addVehicleDetails(excelData("region", i), excelData("car_number", i),excelData("vehicle_usage", i) );
 
 		// Add quotation details
@@ -138,7 +138,7 @@ public class Test_Quotation_Smoke {
 	}
 	
 	
-	@Test(invocationCount = 2,priority=2)
+	@Test(invocationCount = 1,priority=2)
 	public void testConfirmQuotation() throws InterruptedException {
 		
 		j++;

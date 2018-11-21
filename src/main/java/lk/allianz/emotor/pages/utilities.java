@@ -85,6 +85,7 @@ public class utilities {
 	public static void EnterValue(WebDriver driver,By element, String value) {
 		WebDriverWait wait=new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+		driver.findElement(element).clear();
 		wait.until(ExpectedConditions.presenceOfElementLocated(element)).sendKeys(value);
 
 	}

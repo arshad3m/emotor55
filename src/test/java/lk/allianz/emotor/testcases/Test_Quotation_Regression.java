@@ -3,6 +3,7 @@ package lk.allianz.emotor.testcases;
 import static lk.allianz.emotor.pages.ExcelReader.excelData;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -26,7 +27,7 @@ public class Test_Quotation_Regression {
 
 	
 	private WebDriver driver;
-	int i=0;
+	int i=1;
 	
 	private LoginPage login ;
 	private CreateQuotation quotation;
@@ -40,11 +41,10 @@ public class Test_Quotation_Regression {
 
 		
 
-
+		
 		 
-		 
-			ExcelReader xxx = new ExcelReader("src\\main\\java\\Resources\\test_data_sheet.xlsx" ,0);
-			System.setProperty("webdriver.chrome.driver", "src\\main\\java\\Resources\\chromedriver.exe");
+			ExcelReader xxx = new ExcelReader("src\\main\\java\\lk\\allianz\\emotor\\resources\\test_data_sheet.xlsx" ,0);
+			System.setProperty("webdriver.chrome.driver", "src\\main\\java\\lk\\allianz\\emotor\\resources\\chromedriver.exe");
 			driver = new ChromeDriver();
 			login = new LoginPage(driver);
 			quotation= new CreateQuotation(driver);
@@ -58,7 +58,7 @@ public class Test_Quotation_Regression {
 	
 	
 	@Test
-	public void create_quotation () throws InterruptedException {
+	public void create_quotation_regression () throws InterruptedException {
 		
 		i++;
 		
@@ -78,7 +78,7 @@ public class Test_Quotation_Regression {
 
 		// Add customer details
 		quotation.addCustomerDetails(excelData("first_name", i), excelData("last_name", i),
-				excelData("contact_number_1", 1), excelData("house_number", 1), excelData("street", 1));
+				excelData("contact_number_1", i), excelData("house_number", i), excelData("street", i));
 
 		// Add vehicle details
 		quotation.addVehicleDetails(excelData("region", i), excelData("car_number", i),excelData("vehicle_usage", i) );
@@ -102,8 +102,11 @@ public class Test_Quotation_Regression {
 		
 		Thread.sleep(10000);
 
-		Actions action= new Actions(driver);
-		action.keyDown(Keys.CONTROL).sendKeys(Keys.TAB).build().perform();
+
+		    ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+		    driver.switchTo().window(tabs2.get(1));
+		    driver.close();
+		    driver.switchTo().window(tabs2.get(0));
 		
 		
 		Thread.sleep(5000);
@@ -132,18 +135,20 @@ public class Test_Quotation_Regression {
 		//Confirm quotation
 		confirm.clickConfirmQuotationButton();
 		
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 
 		//Click button to proceed
 		confirm.clickProceedButton();
 		
+		Thread.sleep(10000);
+		
 		//Click button to convert the policy
 		confirm.clickConvertToPolicyButton();
 		
-		Thread.sleep(10000);
+		Thread.sleep(20000);
 		
 		
-		upload.clickDocumentUpload();
+/*		upload.clickDocumentUpload();
 		
 		upload.clickUpload();
 		
@@ -167,7 +172,7 @@ public class Test_Quotation_Regression {
 		Thread.sleep(8000);
 		
 		upload.checkMandatoryDocuments(excelData("mandatory_documents", i));
-		
+		*/
 		Thread.sleep(20000);
 		
 		

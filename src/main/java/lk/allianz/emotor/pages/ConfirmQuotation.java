@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.asserts.SoftAssert;
 
+import lk.allianz.emotor.base.TestBase;
+
 import static lk.allianz.emotor.pages.utilities.*;
 
 import java.time.LocalDate;
@@ -34,15 +36,13 @@ public class ConfirmQuotation {
 		
 		ClickElement(driver, quotationLink);
 		ClickElement(driver, confirmQuotationLink);
+		
+
 	}
 	
 	
 	public void clickConfirmQuotationbutton() {
-		By quotationLink = By.linkText("Quotations");
 	    By confirmQuotationLink = By.linkText("Confirm Quotation");
-
-	    Actions action = new Actions(driver);
-	    action.moveToElement(driver.findElement(confirmQuotationLink)).build().perform();
 		ClickElement(driver, confirmQuotationLink);
 	}
 	
@@ -80,16 +80,13 @@ public class ConfirmQuotation {
 		
 		ClickElement(driver, dateFrom);
 		
-		
 		int i = 0;
 		List <WebElement> dates=driver.findElements(By.xpath("//table[@class='table-condensed']//*[text()="+date+"]"));
-				
 		Iterator <WebElement> itr = dates.iterator();
 		
 		while(itr.hasNext()) {
 			WebElement element = itr.next();
 			if (element.getAttribute("class").equals("day")) {
-				
 				break;
 			}
 			
@@ -98,9 +95,7 @@ public class ConfirmQuotation {
 		}
 		
 		dates.get(i).click();
-		
 		Thread.sleep(5000);
-
 		//driver.findElement(dateFrom).sendKeys(Keys.ENTER);
 	}
 	
@@ -109,22 +104,13 @@ public class ConfirmQuotation {
 		
 
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("d");
-		
 		LocalDate localDate = LocalDate.now();
-		
 		System.out.println(dtf.format(localDate)); // 2016/11/16
-		
-		int futureDate = Integer.parseInt (dtf.format(localDate))+2;
-
+		int futureDate = Integer.parseInt(dtf.format(localDate)) + 2;
 		By dateFrom = By.id("date-range-from");
-
 		ClickElement(driver, dateFrom);
-
-		driver.findElement(By.xpath("//table[@class='table-condensed']//*[text()="+futureDate+"]")).click();
-
+		driver.findElement(By.xpath("//table[@class='table-condensed']//*[text()=" + futureDate + "]")).click();
 		Thread.sleep(5000);
-		
-		
 		
 	}
 	
@@ -171,6 +157,11 @@ public class ConfirmQuotation {
 	}
 	
 	
+	public void verifyCustomerDetailsBeforeConvertingToPolicy(String nic) {
+		WebElement nic_number = driver.findElement(By.xpath("//h4[@class='ng-binding']"));
+	}
+	
+	
 	public void clickConvertToPolicyButton() {
 		
 		By convert_to_policy_button = By.xpath("//button[contains(@ng-click,'proceedtoPolicy()')]");
@@ -193,32 +184,32 @@ public class ConfirmQuotation {
 		String contact_value = driver.findElement(contact).getAttribute("value");
 		String house_number = driver.findElement(By.xpath("//input[@id='address1']")).getAttribute("value");
 		String street_value = driver.findElement(By.xpath("//input[@id='address2']")).getAttribute("value");
-		String city_value = driver.findElement(By.xpath("//span[@id='select2-chosen-1']")).getText();
+		//String city_value = driver.findElement(By.xpath("//span[@id='select2-chosen-1']")).getText();
 		
 		//assert NIC
-		softassert.assertEquals(nic_value, nic_number);
+		softassert.assertEquals(nic_value, nic_number, "NIC number not matching:");
 				
 		//assert First name
-		softassert.assertEquals(fname_value, frist_name);
+		softassert.assertEquals(fname_value, frist_name, "first name not matching:");
 		
 		//assert Last name
-		softassert.assertEquals(lname_value, last_name);
+		softassert.assertEquals(lname_value, last_name, "last name not matching:");
 		
 		//assert contact
-		softassert.assertEquals(contact_value, contact_number);
+		softassert.assertEquals(contact_value, contact_number, "contact number not matching:");
 		
 		//assert house number
-		softassert.assertEquals(house_number, house);
+		softassert.assertEquals(house_number, house, "house number not matching:");
 		
 		//assert street value
-		softassert.assertEquals(street_value, street);
+		softassert.assertEquals(street_value, street, "street value not matching:");
 		
 		//assert city value
 		//softassert.assertEquals(city_value, city);
 		
 		System.out.println(house_number);
 		System.out.println(street_value);
-		System.out.println(city_value);
+//		System.out.println(city_value);
 	
 		softassert.assertAll();
 	}
