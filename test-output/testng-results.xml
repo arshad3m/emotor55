@@ -2,24 +2,24 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="180307" started-at="2018-11-21T04:49:52Z" finished-at="2018-11-21T04:52:53Z">
+  <suite name="Default suite" duration-ms="106317" started-at="2018-11-21T13:16:27Z" finished-at="2018-11-21T13:18:14Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="180307" started-at="2018-11-21T04:49:52Z" finished-at="2018-11-21T04:52:53Z">
-      <class name="lk.allianz.emotor.testcases.Test_Quotation_Regression">
-        <test-method status="PASS" signature="setup()[pri:0, instance:lk.allianz.emotor.testcases.Test_Quotation_Regression@57baeedf]" name="setup" is-config="true" duration-ms="7709" started-at="2018-11-21T04:49:53Z" finished-at="2018-11-21T04:50:00Z">
+    <test name="Default test" duration-ms="106317" started-at="2018-11-21T13:16:27Z" finished-at="2018-11-21T13:18:14Z">
+      <class name="lk.allianz.emotor.testcases.Smoke_QuotationCreation">
+        <test-method status="PASS" signature="setup()[pri:0, instance:lk.allianz.emotor.testcases.Smoke_QuotationCreation@53b32d7]" name="setup" is-config="true" duration-ms="6201" started-at="2018-11-21T13:16:27Z" finished-at="2018-11-21T13:16:34Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="create_quotation_regression()[pri:0, instance:lk.allianz.emotor.testcases.Test_Quotation_Regression@57baeedf]" name="create_quotation_regression" duration-ms="171752" started-at="2018-11-21T04:50:00Z" finished-at="2018-11-21T04:52:52Z">
+        <test-method status="PASS" signature="test_create_company_quotation()[pri:1, instance:lk.allianz.emotor.testcases.Smoke_QuotationCreation@53b32d7]" name="test_create_company_quotation" duration-ms="99284" started-at="2018-11-21T13:16:34Z" finished-at="2018-11-21T13:18:13Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- create_quotation_regression -->
-        <test-method status="PASS" signature="quit()[pri:0, instance:lk.allianz.emotor.testcases.Test_Quotation_Regression@57baeedf]" name="quit" is-config="true" duration-ms="827" started-at="2018-11-21T04:52:52Z" finished-at="2018-11-21T04:52:53Z">
+        </test-method> <!-- test_create_company_quotation -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:lk.allianz.emotor.testcases.Smoke_QuotationCreation@53b32d7]" name="tearDown" is-config="true" duration-ms="807" started-at="2018-11-21T13:18:13Z" finished-at="2018-11-21T13:18:14Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- quit -->
-      </class> <!-- lk.allianz.emotor.testcases.Test_Quotation_Regression -->
+        </test-method> <!-- tearDown -->
+      </class> <!-- lk.allianz.emotor.testcases.Smoke_QuotationCreation -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

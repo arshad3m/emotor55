@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="lk.allianz.emotor.testcases.Test_Quotation_Regression">
+      <class name="lk.allianz.emotor.testcases.Smoke_QuotationCreation">
         <methods>
-          <include name="create_quotation_regression"/>
-          <include name="quit"/>
+          <include name="test_create_company_quotation"/>
           <include name="setup"/>
+          <include name="tearDown"/>
         </methods>
-      </class> <!-- lk.allianz.emotor.testcases.Test_Quotation_Regression -->
+      </class> <!-- lk.allianz.emotor.testcases.Smoke_QuotationCreation -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
