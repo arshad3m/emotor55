@@ -19,6 +19,7 @@ public class ExcelReader {
 	private String path;
 	private Iterator<Row> rowIterator;
 	private static Sheet sheet;
+	private static int sheet_index=0;
 	
 	public ExcelReader (String path, int sheetIndex) throws EncryptedDocumentException, InvalidFormatException, IOException {
 		this.path = path;
@@ -26,13 +27,14 @@ public class ExcelReader {
 		workbook=WorkbookFactory.create(new File(path));
 		sheet=workbook.getSheetAt(sheetIndex);
 		rowIterator = sheet.rowIterator();
+		sheet_index=sheetIndex;
 
 	}
 	
 	public static String excelData(String key, int row) {
 		
 
-		return workbook.getSheetAt(0).getRow(row).getCell(getColumnId(key)).toString(); 
+		return workbook.getSheetAt(sheet_index).getRow(row).getCell(getColumnId(key)).toString(); 
 		
 	}
 	

@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.asserts.SoftAssert;
 
-import lk.allianz.emotor.base.TestBase;
+import lk.allianz.emotor.base.EmotorBasePage;
 
 import static lk.allianz.emotor.pages.utilities.*;
 

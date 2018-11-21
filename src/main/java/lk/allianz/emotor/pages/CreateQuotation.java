@@ -9,12 +9,14 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import lk.allianz.emotor.base.TestBase;
+import lk.allianz.emotor.base.EmotorBasePage;
 import net.bytebuddy.implementation.bytecode.ByteCodeAppender;
 
+import static lk.allianz.emotor.pages.ExcelReader.excelData;
 import static lk.allianz.emotor.pages.utilities.*;
 
 import java.util.ArrayList;
+import java.util.List;
 //import org.testng.asserts.Assertion;
 
 public class CreateQuotation {
@@ -52,7 +54,7 @@ private WebDriverWait wait;
 
 
 	
-	
+	//add initial details
 	public void addInitialDetails(String strCustomerType,String strMarkerterCode) throws InterruptedException
 	{
 		
@@ -85,6 +87,7 @@ private WebDriverWait wait;
 
 	}
 
+	//add initial customer details
 	public void addInitialCustomerDetails(String strSalutation, String strNic) {
 
 		//select salutation
@@ -94,6 +97,7 @@ private WebDriverWait wait;
 		EnterValue(driver, nic, strNic);
 	}
 
+	//add customer details
 	public void addCustomerDetails(String strfirstName, String strlastName, String strcontactNumber1, String strAdd1,
 			String strAdd2) throws InterruptedException {
 		
@@ -122,16 +126,16 @@ private WebDriverWait wait;
 
 	}
 	
+	//tick checkbox 'with customer details'
 	public void clickCheckBox_WithCustomerDetails() {
 		
 		ClickElementByXpath(driver, "//*[@id=\"main-wrapper\"]/div/div/ng-view/div[2]/div[1]/div/div/div/div[1]/div/div[3]/div[1]/div/label");
 	}
 	
-	
+	//tick checkbox 'without customer details'
 	public void clickCheckBox_WithoutCustomerDetails() {
 		ClickElementByXpath(driver, "//*[@id=\"main-wrapper\"]/div/div/ng-view/div[2]/div[1]/div/div/div/div[1]/div/div[3]/div[2]/div/label");
 	}
-	
 	
 	
 	//add vehicle details -custom
@@ -220,6 +224,13 @@ private WebDriverWait wait;
 	}
 	
 	
+	
+	//add unregistered vehicle details
+	public void addUnregisteredVehicle() {
+		
+	}
+	
+	//add quotation details
 	public void addQuotationDetails(String value, String years, String garage, String pakage, String voluntary, String NCD) throws InterruptedException {
 		
 		By insured_value = By.id("suminsvalue1");
@@ -251,6 +262,7 @@ private WebDriverWait wait;
 	}
 	
 	
+	//submit quotation
 	public void submitQuotation() throws InterruptedException {
 		By submit_button = By.xpath("//*[@id=\"main-wrapper\"]/div[2]/div/ng-view/div[2]/div[1]/div/div/div/div[2]/div/div[1]/div/div/button[1]");
 		
@@ -262,6 +274,7 @@ private WebDriverWait wait;
 	}
 	
 	
+	//generate quotation
 	public void generateQuotation() throws InterruptedException {
 		
 		By generate_quotation_button = By.xpath("//*[@id=\"main-wrapper\"]/div/div/ng-view/div[2]/div[3]/div/div[2]/button[1]");
@@ -274,6 +287,7 @@ private WebDriverWait wait;
 	}
 	
 	
+	//verify quotation is generated (pdf is populated)
 	public boolean checkQuotationIsGenerated() throws InterruptedException {
 		
 		// wait for the load to happen
@@ -293,9 +307,156 @@ private WebDriverWait wait;
 	}
 	
 	
-	public void addExtendedCovers() {
+	//add extended covers
+	public void addExtendedCovers(String cover_name) {
+		
+		By srcc = By.xpath("//label[@for='basic_checkbox_1']");
+		By terrorism = By.xpath("//label[@for='basic_checkbox_2']");
+		By taxi = By.xpath("//label[@for='taxi_checkbox']");
+		By theft = By.xpath("//label[@for='theftOfParts_checkbox']");
+		By driving_tution = By.xpath("//label[@for='drivingTution_checkbox']");
+		By pab = By.xpath("//label[@for='basic_checkbox_3']");
+		By tppd = By.xpath("//label[@for='basic_checkbox_4']");
+		By wci = By.xpath("//label[@for='basic_checkbox_6']");
+		By learner_driver = By.xpath("//label[@for='learnerdriver_checkbox']");
+		By towing = By.xpath("//label[@for='basic_checkbox_7']");
+		By special_windscreen = By.xpath("//label[@for='basic_checkbox_9']");
+		
+		By element=null;
+
+		
+		switch(cover_name) {
+		
+		case "srcc": element = srcc; break;
+		case "terrorism": element = terrorism;break;
+		case "taxi": element = taxi;break;
+		case "theft": element = theft;break;
+		case "driving_tution": element = driving_tution;break;
+		case "pab": element = pab;break;
+		case "tppd": element = tppd;break;
+		case "wci": element = wci;break;
+		case "learner_driver": element = learner_driver;break;
+		case "towing": element = towing;break;
+		case "special_windscreen": element = special_windscreen;break;
+		default: break;
+		
+
+		
+		}
+		
+
+		
+		if (cover_name.equals("srcc")) {
+
+			ClickElement(driver, element);
+		}
+
+		if (cover_name.equals("terrorism")) {
+
+			ClickElement(driver, element);
+		}
+
+		if (cover_name.equals("taxi")) {
+
+			ClickElement(driver, element);
+		}
+		
+		if (cover_name.equals("theft")) {
+
+			ClickElement(driver, element);
+		}
+		
+		if (cover_name.equals("driving_tution")) {
+
+			ClickElement(driver, element);
+		}
+		
+		if (cover_name.equals("pab")) {
+
+			ClickElement(driver, element);
+			ClickElement(driver, By.xpath("//select[@id='paboption']"));
+			SelectByText(driver, By.xpath("//select[@id='paboption']"), "Driver+Passenger");
+			
+			ClickElement(driver, By.xpath("//select[@id='vp_seat']"));
+			SelectByIndex(driver, By.xpath("//select[@id='vp_seat']"), 2);
+			
+		}
+		
+		if (cover_name.equals("tppd")) {
+
+			ClickElement(driver, element);
+			ClickElement(driver, By.xpath("//select[@id='tppdselect']"));
+			SelectByIndex(driver, By.xpath("//select[@id='tppdselect']"), 2);
+		}
+		
+		if (cover_name.equals("wci")) {
+
+			ClickElement(driver, element);
+			ClickElement(driver, By.xpath("//select[@id='wciselect']"));
+			SelectByIndex(driver, By.xpath("//select[@id='wciselect']"), 2);
+		}
+		
+		if (cover_name.equals("learner_driver")) {
+
+			ClickElement(driver, element);
+			ClickElement(driver, By.xpath("//select[@id='leardriselect']"));
+			SelectByIndex(driver, By.xpath("//select[@id='leardriselect']"), 2);
+		}
+		
+		if (cover_name.equals("towing")) {
+
+			ClickElement(driver, element);
+			EnterValue(driver, By.xpath("//input[@id='tocValueText']"), "20000");
+		}
 		
 		
+		if (cover_name.equals("special_windscreen")) {
+
+			ClickElement(driver, element);
+			EnterValue(driver, By.xpath("//input[@id='swsValueText']"), "45000");
+
+		}
+
 	}
 
+	
+	//add extended covers
+	public void addCovers(String covers) {
+		
+		String cover[]=covers.split(",");
+		for(int i=0; i<cover.length; i++) {
+			
+			addExtendedCovers(cover[i]);
+		}
+		
+	}
+	
+	
+	//add company information
+	public void addCompanyDetails (String reg, String vat, String name, String emailid, String contact1, String contact2, String house, String street)
+	{
+		By company_reg_num = By.xpath("//input[@id='companyregnum1']");
+		By company_vat_num = By.xpath("//input[@id='vatregnum1']");
+		By company_name = By.xpath("//input[@id='companyname1']");
+		By email = By.xpath("//input[@id='emailaddresscompany1']");
+		By contact_1 = By.xpath("//input[@id='contactnumbercompany1']");
+		By contact_2 = By.xpath("//input[@id='contactnumbercompany2']");
+		By house_number = By.xpath("//input[@id='address1']");
+		By street_number = By.xpath("//input[@id='address2']");
+
+		EnterValue(driver, company_reg_num, reg);
+		EnterValue(driver, company_vat_num, vat);
+		EnterValue(driver, company_name, name);
+		EnterValue(driver, email, emailid);
+		EnterValue(driver, contact_1, contact1);
+		EnterValue(driver, contact_2, contact2);
+		
+		Actions action= new Actions(driver);
+		//action.moveToElement(driver.findElement(house_number)).build().perform();
+		//EnterValue(driver, house_number, house);
+	//	EnterValue(driver, street_number, street);
+
+		
+	}
+	
 }
