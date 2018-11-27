@@ -1,6 +1,7 @@
 package lk.allianz.emotor.pages;
 
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.pdfbox.io.RandomAccessBufferedFileInputStream;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
@@ -24,6 +25,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.util.regex.Pattern;
 //import org.testng.asserts.Assertion;
 
 public class CreateQuotation {
@@ -197,6 +200,7 @@ private WebDriverWait wait;
 		By vehicle_usage =By.id("vusage1");
 		
 		
+		String type;
 		String make;
 		String model[];
 		
@@ -213,9 +217,26 @@ private WebDriverWait wait;
 
 				model = driver.findElement(By.cssSelector("span[ng-bind='vModelShowValue']")).getText().split(" ");
 				make = driver.findElement(By.cssSelector("span[ng-bind='vMakeShowValue']")).getText();
+				type = driver.findElement(By.xpath("//span[@ng-bind='vtypeShowValue']")).getText();
 				
+
 				//Select vehicle type
-				SelectByText(driver, vehicle_type, "Passenger Car");
+				if(type.equals("MOTOR CYCLE")) {
+					SelectByText(driver, vehicle_type, "Motorcycles");	
+				}
+				
+				if(type.equals("MOTOR CAR")) {
+					SelectByText(driver, vehicle_type, "Passenger Car");	
+				}
+				
+				if(type.equals("MOTOR LORRY")) {
+					SelectByText(driver, vehicle_type, "Trucks");	
+				}
+				
+				if(type.equals("MOTOR TRICYCLE")) {
+					SelectByText(driver, vehicle_type, "Three Wheelers");	
+				}
+				
 				
 				Thread.sleep(2000);
 
@@ -362,8 +383,13 @@ private WebDriverWait wait;
 			PDFTextStripper stripper = new PDFTextStripper();
 			String text = stripper.getText(document);
 			System.out.println("Text:" + text);
-			reference=text.substring(text.indexOf("AZ20"), 2);
+		//	reference=text.substring(text.indexOf("AZ20"), -2); AZ2018QT069438
+			String s = "Hello World! 3 + 3.0 = 6 ";
+			System.out.println("tyring to extract the text");
+			Scanner scanner = new Scanner(text);
+			reference=scanner.next(Pattern.compile("AZ20.........."));
 			System.out.println(reference+" is the extracted text");
+			scanner.close();
 		}
 		document.close();
 		

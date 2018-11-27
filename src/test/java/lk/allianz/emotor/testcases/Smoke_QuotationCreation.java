@@ -35,7 +35,7 @@ public class Smoke_QuotationCreation extends EmotorBasePage {
 	
 	
 	//Test 1
-	@Test(invocationCount = 5,priority=1)
+//	@Test(invocationCount = 5,priority=1)
 		public void test_create_quotation_with_customer_details()throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException {
 			  
 		dataFile = new ExcelReader("src\\main\\java\\lk\\allianz\\emotor\\resources\\smoke_test_data_sheet.xlsx" ,1);
@@ -78,7 +78,7 @@ public class Smoke_QuotationCreation extends EmotorBasePage {
 	
 	
 	//Test 2
-//	@Test(invocationCount = 5,priority=2)
+	@Test(invocationCount = 5,priority=2)
 		public void test_create_quotation_without_customer_details() throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException {
 		
 		dataFile = new ExcelReader("src\\main\\java\\lk\\allianz\\emotor\\resources\\smoke_test_data_sheet.xlsx" ,0);
