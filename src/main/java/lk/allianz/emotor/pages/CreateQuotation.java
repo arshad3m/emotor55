@@ -1,6 +1,10 @@
 package lk.allianz.emotor.pages;
 
 
+import org.apache.pdfbox.io.RandomAccessBufferedFileInputStream;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +19,9 @@ import net.bytebuddy.implementation.bytecode.ByteCodeAppender;
 import static lk.allianz.emotor.pages.ExcelReader.excelData;
 import static lk.allianz.emotor.pages.utilities.*;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 //import org.testng.asserts.Assertion;
@@ -193,7 +200,8 @@ private WebDriverWait wait;
 		String make;
 		String model[];
 		
-		
+		Thread.sleep(2000);
+
 		//select prefix
 				SelectByText(driver, driver.findElement(By.id("regionCode1")), prefix);
 				
@@ -226,8 +234,44 @@ private WebDriverWait wait;
 	
 	
 	//add unregistered vehicle details
-	public void addUnregisteredVehicle() {
+	public void addUnregisteredVehicle(String prefix, String number, String type, String make, String model, String capacity, String year, String usage) throws InterruptedException {
 		
+
+		By vehicle_number = By.id("vehiclenumber1");
+		By vehicle_type = By.id("vehicle-type");
+		By vehicle_make = By.xpath("//*[@id=\"vehiclemake\"]");
+		By vehicle_modle =By.id("vehiclemodel");
+		By vehicle_capacity = By.id("seatcapacity1");
+		By vehicle_year = By.id("vage1");
+		By vehicle_usage =By.id("vusage1");
+		
+		//select prefix
+		SelectByText(driver, driver.findElement(By.id("regionCode1")), prefix);
+		
+		//Enter number
+		//EnterValue(driver, vehicle_number, number);
+		
+		//Wait for the load to happen
+		Thread.sleep(5000);
+
+		
+		//Select vehicle type
+		SelectByText(driver, vehicle_type, type);
+		
+		//select vehicle make
+		SelectByText(driver, vehicle_make, make);
+		
+		//Select vehicle model
+		SelectByText(driver, vehicle_modle, model);
+		
+		//select vehicle capacity
+		SelectByText(driver, vehicle_capacity, capacity);
+		
+		//select vehicle manufacture year
+		SelectByText(driver, vehicle_year, year);
+		
+		//select vehicle usage
+		SelectByText(driver, vehicle_usage, usage);
 	}
 	
 	//add quotation details
@@ -280,7 +324,7 @@ private WebDriverWait wait;
 		By generate_quotation_button = By.xpath("//*[@id=\"main-wrapper\"]/div/div/ng-view/div[2]/div[3]/div/div[2]/button[1]");
 		
 		//wait for the load to happen
-		Thread.sleep(16000);
+		Thread.sleep(8000);
 		
 		ClickElement(driver, generate_quotation_button);
 		
@@ -306,6 +350,26 @@ private WebDriverWait wait;
 		return state;
 	}
 	
+	
+	//get the quotation reference number from the pdf
+	public String getQuotationReferenceNumber() throws InvalidPasswordException, IOException {
+
+		String reference=null;
+		URL url= new URL(driver.getCurrentUrl());
+		RandomAccessBufferedFileInputStream inputStream = new RandomAccessBufferedFileInputStream(url.openStream());
+		PDDocument document = PDDocument.load(inputStream);
+		if (!document.isEncrypted()) {
+			PDFTextStripper stripper = new PDFTextStripper();
+			String text = stripper.getText(document);
+			System.out.println("Text:" + text);
+			reference=text.substring(text.indexOf("AZ20"), 2);
+			System.out.println(reference+" is the extracted text");
+		}
+		document.close();
+		
+		return reference;
+
+	}
 	
 	//add extended covers
 	public void addExtendedCovers(String cover_name) {

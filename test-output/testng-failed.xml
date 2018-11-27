@@ -5,7 +5,7 @@
     <classes>
       <class name="lk.allianz.emotor.testcases.Smoke_QuotationCreation">
         <methods>
-          <include name="test_create_company_quotation"/>
+          <include name="test_create_quotation_with_customer_details"/>
           <include name="setup"/>
           <include name="tearDown"/>
         </methods>

@@ -35,12 +35,12 @@ public class Smoke_QuotationCreation extends EmotorBasePage {
 	
 	
 	//Test 1
-	//@Test(invocationCount = 5,priority=1)
+	@Test(invocationCount = 5,priority=1)
 		public void test_create_quotation_with_customer_details()throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException {
 			  
 		dataFile = new ExcelReader("src\\main\\java\\lk\\allianz\\emotor\\resources\\smoke_test_data_sheet.xlsx" ,1);
 
-				Thread.sleep(10000);
+				Thread.sleep(15000);
 
 				// Click create quoation
 				quotation.clickToCreateQuotation();
@@ -124,7 +124,7 @@ public class Smoke_QuotationCreation extends EmotorBasePage {
 	
 	
 	//Test 3
-	@Test(priority=1)
+	//@Test(priority=1)
 	public void test_create_company_quotation() throws EncryptedDocumentException, InvalidFormatException, IOException, InterruptedException {
 		
 		dataFile = new ExcelReader("src\\main\\java\\lk\\allianz\\emotor\\resources\\smoke_test_data_sheet.xlsx" ,2);
@@ -174,6 +174,7 @@ public class Smoke_QuotationCreation extends EmotorBasePage {
 	
 	
 	//Test 4
+	//@Test
 	public void test_create_quotation_for_unregistered_vehicle() throws EncryptedDocumentException, InvalidFormatException, IOException, InterruptedException {
 		dataFile = new ExcelReader("src\\main\\java\\lk\\allianz\\emotor\\resources\\smoke_test_data_sheet.xlsx" ,3);
 
@@ -189,8 +190,11 @@ public class Smoke_QuotationCreation extends EmotorBasePage {
 		//Add company details
 		quotation.addCompanyDetails("reg", "vat", "name", "emailid@email.com", "1111222333", "44455666", "house", "street");
 		
+		Thread.sleep(6000);
+
+		
 		// Add vehicle details
-		quotation.addVehicleDetails(excelData("region", i), excelData("car_number", i),excelData("vehicle_usage", i) );
+		quotation.addUnregisteredVehicle(excelData("region", i), excelData("car_number", i), excelData("type", i), excelData("make", i), excelData("model", i), excelData("capacity", i), excelData("year", i), excelData("vehicle_usage", i));
 		
 		Thread.sleep(6000);
 
@@ -198,7 +202,7 @@ public class Smoke_QuotationCreation extends EmotorBasePage {
 		// Add quotation details
 		quotation.addQuotationDetails(excelData("insured_amount", i), excelData("driving_exp", i),	excelData("garage", i), excelData("package_type", i), excelData("voluntary_excess", i),	excelData("NCD", i));
 
-		Thread.sleep(4000);
+		Thread.sleep(6000);
 
 		// Add covers
 		quotation.addCovers(excelData("covers", i));
@@ -208,14 +212,19 @@ public class Smoke_QuotationCreation extends EmotorBasePage {
 		// Submit
 		quotation.submitQuotation();
 
-		Thread.sleep(10000);
-
-		
+	
 		// Generate quotation
 		quotation.generateQuotation();
+		
+		Thread.sleep(5000);
+
 
 		// Assert Quotation is generated
 		Assert.assertEquals(true, quotation.checkQuotationIsGenerated(),"Failed for the following package: "+excelData("package_type", i));
+		
+		Thread.sleep(5000);
+		
+		quotation.getQuotationReferenceNumber();
 	}
 	
 	

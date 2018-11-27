@@ -57,7 +57,7 @@ public class Test_Quotation_Regression {
 	}
 	
 	
-	@Test
+	@Test (invocationCount = 6)
 	public void create_quotation_regression () throws InterruptedException {
 		
 		i++;
