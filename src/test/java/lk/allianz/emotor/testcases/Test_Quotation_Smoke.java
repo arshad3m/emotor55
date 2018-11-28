@@ -1,6 +1,6 @@
 package lk.allianz.emotor.testcases;
 
-import static lk.allianz.emotor.pages.ExcelReader.*;
+import static lk.allianz.emotor.utilities.ExcelReader.*;
 import static org.testng.Assert.assertEquals;
 
 import java.io.IOException;
@@ -24,9 +24,9 @@ import org.testng.annotations.Test;
 import lk.allianz.emotor.pages.ConfirmQuotation;
 import lk.allianz.emotor.pages.CreateQuotation;
 import lk.allianz.emotor.pages.DocumentUpload;
-import lk.allianz.emotor.pages.ExcelReader;
 import lk.allianz.emotor.pages.LoginPage;
 import lk.allianz.emotor.pages.ReviseQuotation;
+import lk.allianz.emotor.utilities.ExcelReader;
 
 public class Test_Quotation_Smoke {
 	private WebDriver driver;

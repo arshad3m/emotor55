@@ -1,6 +1,8 @@
-package lk.allianz.emotor.pages;
+package lk.allianz.emotor.utilities;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
 
@@ -16,7 +18,7 @@ import org.apache.poi.ss.util.CellReference;
 public class ExcelReader {
 
 	private static Workbook workbook;
-	private String path;
+	private static String path;
 	private Iterator<Row> rowIterator;
 	private static Sheet sheet;
 	private static int sheet_index=0;
@@ -31,12 +33,7 @@ public class ExcelReader {
 
 	}
 	
-	public static String excelData(String key, int row) {
-		
 
-		return workbook.getSheetAt(sheet_index).getRow(row).getCell(getColumnId(key)).toString(); 
-		
-	}
 	
 	public static int getColumnId(String column) {
 		int index=0;
@@ -62,6 +59,27 @@ public class ExcelReader {
 	}
 	
 	
+	
+	public static String excelData(String key, int row) {
+		
+
+		return workbook.getSheetAt(sheet_index).getRow(row).getCell(getColumnId(key)).toString(); 
+		
+	}
+	
+	
+	
+	
+	public static void writeData(String column, int row) throws IOException {
+
+		Cell cell = null;
+		cell = sheet.getRow(row).getCell(getColumnId(column));
+		cell.setCellValue("Pass");
+
+		FileOutputStream outFile = new FileOutputStream(path);
+		workbook.write(outFile);
+		outFile.close();
+	}
 
 	
 	

@@ -1,5 +1,9 @@
 package lk.allianz.emotor.pages;
 
+import org.apache.pdfbox.io.RandomAccessBufferedFileInputStream;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -10,10 +14,13 @@ import org.testng.asserts.SoftAssert;
 
 import lk.allianz.emotor.base.EmotorBasePage;
 
-import static lk.allianz.emotor.pages.utilities.*;
+import static lk.allianz.emotor.utilities.utilities.*;
 
+import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -57,7 +64,7 @@ public class ConfirmQuotation {
 		//By textBox_search =By.xpath("//*[@id=\"s2id_autogen1088_search\"]");
 		
 		List <WebElement> list = driver.findElements(textBox_search);
-		System.out.println(list.size());
+	//	System.out.println(list.size());
 		
 		
 		
@@ -151,7 +158,7 @@ public class ConfirmQuotation {
 	public void clickProceedButton() {
 		
 		List <WebElement> list = driver.findElements(By.xpath("//button[contains(@data-toggle,'modal')]"));
-		System.out.println(list.size());
+//		System.out.println(list.size());
 		ClickElement(driver, list.get(0));
 		
 	}
@@ -168,6 +175,25 @@ public class ConfirmQuotation {
 		ClickElement(driver, convert_to_policy_button);
 	}
 	
+	
+	public void submitTheQuestions() {
+		
+		By yes_button = By.xpath("//button[@ng-click='ApplicationToContract()']");
+		ClickElement(driver, yes_button);
+	}
+
+	
+	public void selectReason() {
+		By reason = By.xpath("//select[@name='printConfiguration']");
+		ClickElement(driver, reason);
+		SelectByIndex(driver, reason, 2);
+	}
+	
+	
+	public void printCoverNOte() {
+		By print_button = By.xpath("//button[@ng-click='getCoverNote();refeshTab()']");
+		ClickElement(driver, print_button);
+	}
 	
 	
 	public void checkcustomerDetails(String nic_number, String frist_name, String last_name, String contact_number, String house, String street) {
@@ -207,10 +233,10 @@ public class ConfirmQuotation {
 		//assert city value
 		//softassert.assertEquals(city_value, city);
 		
-		System.out.println(house_number);
+/*		System.out.println(house_number);
 		System.out.println(street_value);
 //		System.out.println(city_value);
-	
+*/	
 		softassert.assertAll();
 	}
 	
@@ -228,6 +254,44 @@ public class ConfirmQuotation {
 		
 	}
 	
+	
+	//get the premium from quotation pdf
+	
+	public String getPremiumInCovernote() throws InvalidPasswordException, IOException, InterruptedException {
+		Thread.sleep(5000);
+		
+
+		ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
+
+		//driver.switchTo().window(tabs2.get(1)).getCurrentUrl().contains("getAllProductsWithCovers"); 
+		
+		
+		//System.out.println(driver.switchTo().window(tabs2.get(1)).getCurrentUrl());
+		String reference=null;
+		URL url= new URL(driver.switchTo().window(tabs2.get(1)).getCurrentUrl());
+		//url=new URL("http://192.168.128.68:8081/emotorbridge//product/getAllProductsWithCovers?qhID=69467&isReprint=false&bridgeToken=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJFTW90b3JDTEkiLCJzdWIiOiJFTW90b3JDTElBdXRoIiwiaWF0IjoxNTQzMzA3MjQ2LCJleHAiOjE1NDMzMTQ0NDZ9.vCZIO6CWxSz-Xg_7b56-129K_qBFQ5U0k1l7xCqJvH0");
+		//url= new URL("http://192.168.128.68:8081/emotorbridge//getOnlinePrintPdf?contractId=V2F918ADA9E0C9E9E8B223037397C7FDE2B067DBA810FF071BB00340DB3180E6F54CB8F1C2ACABDFA88820734F3C0EF52B&&policyId=V2F918ADA9E0C9E9E8B223037397C7FDE2B067DBA810FF071BB00340DB3180E6F54CB8F1C2ACABDFA88820734F3C0EF52B&&documentType=G&&printConfiguration=COVERINS&&language=EUK&&logicalSection=V_LK_ACS&&bridgeToken=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJFTW90b3JDTEkiLCJzdWIiOiJFTW90b3JDTElBdXRoIiwiaWF0IjoxNTQzMzI1MjI0LCJleHAiOjE1NDMzMzI0MjR9.Wr5uXUZ7eXRX_9q8QpkElGQ8OXZr7GzubHZbN7c15Vk");
+		RandomAccessBufferedFileInputStream inputStream = new RandomAccessBufferedFileInputStream(url.openStream());
+		PDDocument document = PDDocument.load(inputStream);
+		if (!document.isEncrypted()) {
+			PDFTextStripper stripper = new PDFTextStripper();
+			String text = stripper.getText(document);
+			//System.out.println(text);
+			String arr[]=text.split(" ");
+			
+			for (int i=0; i<arr.length;i++) {
+				if(arr[i].equals("LKR")) {
+				//System.out.println(arr[i+1]);
+				reference=arr[i+1].replace("\nthe", "").replace("\r", "");
+				}
+				
+			}
+		}
+
+		System.out.println(reference+" is the premium in covernote");
+		document.close();
+		return reference;
+	}
 	
 	
 

@@ -1,4 +1,4 @@
-package lk.allianz.emotor.pages;
+package lk.allianz.emotor.utilities;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;

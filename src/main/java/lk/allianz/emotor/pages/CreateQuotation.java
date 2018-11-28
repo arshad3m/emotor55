@@ -6,6 +6,7 @@ import org.apache.pdfbox.io.RandomAccessBufferedFileInputStream;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.apache.poi.util.SystemOutLogger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -17,8 +18,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import lk.allianz.emotor.base.EmotorBasePage;
 import net.bytebuddy.implementation.bytecode.ByteCodeAppender;
 
-import static lk.allianz.emotor.pages.ExcelReader.excelData;
-import static lk.allianz.emotor.pages.utilities.*;
+import static lk.allianz.emotor.utilities.ExcelReader.excelData;
+import static lk.allianz.emotor.utilities.utilities.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -238,7 +239,7 @@ private WebDriverWait wait;
 				}
 				
 				
-				Thread.sleep(2000);
+				Thread.sleep(5000);
 
 				//select vehicle make
 				SelectByText(driver, vehicle_make, make);
@@ -372,29 +373,109 @@ private WebDriverWait wait;
 	}
 	
 	
-	//get the quotation reference number from the pdf
+	//get the quotation reference number from the quotation pdf
 	public String getQuotationReferenceNumber() throws InvalidPasswordException, IOException {
 
 		String reference=null;
 		URL url= new URL(driver.getCurrentUrl());
+		//url=new URL("http://192.168.128.68:8081/emotorbridge//product/getAllProductsWithCovers?qhID=69467&isReprint=false&bridgeToken=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJFTW90b3JDTEkiLCJzdWIiOiJFTW90b3JDTElBdXRoIiwiaWF0IjoxNTQzMzA3MjQ2LCJleHAiOjE1NDMzMTQ0NDZ9.vCZIO6CWxSz-Xg_7b56-129K_qBFQ5U0k1l7xCqJvH0");
 		RandomAccessBufferedFileInputStream inputStream = new RandomAccessBufferedFileInputStream(url.openStream());
 		PDDocument document = PDDocument.load(inputStream);
 		if (!document.isEncrypted()) {
 			PDFTextStripper stripper = new PDFTextStripper();
 			String text = stripper.getText(document);
-			System.out.println("Text:" + text);
-		//	reference=text.substring(text.indexOf("AZ20"), -2); AZ2018QT069438
-			String s = "Hello World! 3 + 3.0 = 6 ";
-			System.out.println("tyring to extract the text");
-			Scanner scanner = new Scanner(text);
-			reference=scanner.next(Pattern.compile("AZ20.........."));
-			System.out.println(reference+" is the extracted text");
-			scanner.close();
+			
+			String arr[]=text.split(" ");
+			
+			for (int i=0; i<arr.length;i++) {
+				if(arr[i].contains("AZ20")) {
+			//	System.out.println(arr[i]);
+				reference=arr[i];
+				}
+			}
 		}
+
+		document.close();
+		return reference;
+
+	}
+	
+	
+	//get the premium from quotation pdf 
+	
+	public String getPremiumInQuotation() throws InvalidPasswordException, IOException {
+		
+		String reference=null;
+		URL url= new URL(driver.getCurrentUrl());
+		//url= new URL("http://192.168.128.68:8081/emotorbridge//product/getAllProductsWithCovers?qhID=69531&isReprint=false&bridgeToken=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJFTW90b3JDTEkiLCJzdWIiOiJFTW90b3JDTElBdXRoIiwiaWF0IjoxNTQzMzc3MDc5LCJleHAiOjE1NDMzODQyNzl9._eMscYGYa3Q7GTdT5Wu1yF06WcXChnVR2BGOpHPLdGU");
+		RandomAccessBufferedFileInputStream inputStream = new RandomAccessBufferedFileInputStream(url.openStream());
+		PDDocument document = PDDocument.load(inputStream);
+		if (!document.isEncrypted()) {
+			PDFTextStripper stripper = new PDFTextStripper();
+			String text = stripper.getText(document);
+			//System.out.println(driver.getCurrentUrl());
+			String arr[]=text.split(" ");
+			
+			for (int i=0; i<arr.length;i++) {
+				arr[i]=arr[i].replace("\n", "").replace("\r", "");
+			}
+			
+			for (int i=0; i<arr.length;i++) {
+				if(arr[i].contains("Notes")) {
+				//System.out.println(arr[i-1].replace("\n", "").replace("\r", ""));
+					arr[i]=arr[i+1].replace("%", "").replace("*", ""); //remove unnecessary characters
+					String ar[]=arr[i].split(",");
+					
+				//	System.out.println(arr[i]);
+					
+				//	System.out.println(ar[0]);
+					
+				//	System.out.println(StringUtils.right( arr[i], 10 ));
+					
+					//substring the string to check at which index is the last decimal. Preimum starts two characters after the last decimal
+					String cut1=StringUtils.right( arr[i], 13 );
+					String cut2=StringUtils.right( arr[i], 12 );
+					String cut3=StringUtils.right( arr[i], 11 );
+					String cut4=StringUtils.right( arr[i], 15 );
+					String cut5=StringUtils.right( arr[i], 14 );
+					
+					if(StringUtils.startsWith(cut1, ".")) {
+						System.out.println(StringUtils.right( arr[i], 10 )+" is the preimium in quotation");
+						reference=StringUtils.right( arr[i], 10 );
+					}
+					
+					if(StringUtils.startsWith(cut2, ".")) {
+						System.out.println(StringUtils.right( arr[i], 9 )+" is the preimium in quotation");
+						reference=StringUtils.right( arr[i], 9 );
+					}
+					
+					if(StringUtils.startsWith(cut3, ".")) {
+						System.out.println(StringUtils.right( arr[i], 8 )+" is the preimium in quotation");
+						reference=StringUtils.right( arr[i], 8 );
+					}
+					
+					if(StringUtils.startsWith(cut4, ".")) {
+						System.out.println(StringUtils.right( arr[i], 12 )+" is the preimium in quotation");
+						reference=StringUtils.right( arr[i], 12 );
+					}
+					
+					if(StringUtils.startsWith(cut5, ".")) {
+						System.out.println(StringUtils.right( arr[i], 11 )+" is the preimium in quotation");
+						reference=StringUtils.right( arr[i], 11 );
+					}
+	
+					
+					
+				}
+				
+
+				
+			}
+		}
+		
 		document.close();
 		
 		return reference;
-
 	}
 	
 	//add extended covers

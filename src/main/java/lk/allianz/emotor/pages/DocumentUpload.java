@@ -1,5 +1,5 @@
 package lk.allianz.emotor.pages;
-import static lk.allianz.emotor.pages.utilities.*;
+import static lk.allianz.emotor.utilities.utilities.*;
 
 import java.util.List;
 

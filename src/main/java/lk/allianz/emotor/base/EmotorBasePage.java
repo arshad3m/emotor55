@@ -15,9 +15,9 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import lk.allianz.emotor.pages.CreateQuotation;
 import lk.allianz.emotor.pages.DocumentUpload;
-import lk.allianz.emotor.pages.ExcelReader;
 import lk.allianz.emotor.pages.LoginPage;
 import lk.allianz.emotor.pages.ReviseQuotation;
+import lk.allianz.emotor.utilities.ExcelReader;
 
 
 

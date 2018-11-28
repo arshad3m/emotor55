@@ -1,10 +1,11 @@
 package lk.allianz.emotor.testcases;
 
-import static lk.allianz.emotor.pages.ExcelReader.excelData;
+import static lk.allianz.emotor.utilities.ExcelReader.excelData;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.Keys;
@@ -19,9 +20,9 @@ import org.testng.annotations.Test;
 import lk.allianz.emotor.pages.ConfirmQuotation;
 import lk.allianz.emotor.pages.CreateQuotation;
 import lk.allianz.emotor.pages.DocumentUpload;
-import lk.allianz.emotor.pages.ExcelReader;
 import lk.allianz.emotor.pages.LoginPage;
 import lk.allianz.emotor.pages.ReviseQuotation;
+import lk.allianz.emotor.utilities.ExcelReader;
 
 public class Test_Quotation_Regression {
 
@@ -57,8 +58,8 @@ public class Test_Quotation_Regression {
 	}
 	
 	
-	@Test (invocationCount = 6)
-	public void create_quotation_regression () throws InterruptedException {
+	@Test (invocationCount = 1)
+	public void create_quotation_regression () throws InterruptedException, InvalidPasswordException, IOException {
 		
 		i++;
 		
@@ -69,6 +70,9 @@ public class Test_Quotation_Regression {
 
 		// Add initial details
 		quotation.addInitialDetails(excelData("customer", i), excelData("market_code", i));
+		
+		Thread.sleep(5000);
+
 
 		// Tick checkbox 'With customer details'
 		quotation.clickCheckBox_WithCustomerDetails();
@@ -76,18 +80,30 @@ public class Test_Quotation_Regression {
 		// add initial customer details
 		quotation.addInitialCustomerDetails(excelData("salutation", i), excelData("nic", i));
 
+		Thread.sleep(5000);
+
 		// Add customer details
 		quotation.addCustomerDetails(excelData("first_name", i), excelData("last_name", i),
 				excelData("contact_number_1", i), excelData("house_number", i), excelData("street", i));
 
 		// Add vehicle details
 		quotation.addVehicleDetails(excelData("region", i), excelData("car_number", i),excelData("vehicle_usage", i) );
+		
+		Thread.sleep(5000);
+
 
 		// Add quotation details
 		quotation.addQuotationDetails(excelData("insured_amount", i), excelData("driving_exp", i),
 				excelData("garage", i), excelData("package_type", i), excelData("voluntary_excess", i),
 				excelData("NCD", i));
 
+		Thread.sleep(5000);
+
+		// Add covers
+					quotation.addCovers(excelData("covers", i));
+
+					
+					
 		// Submit
 		quotation.submitQuotation();
 
@@ -99,6 +115,10 @@ public class Test_Quotation_Regression {
 		// Assert Quotation is generated
 		Assert.assertEquals(true, quotation.checkQuotationIsGenerated(),"Failed for the following package: "+excelData("package_type", i));
 		
+		System.out.println(quotation.getQuotationReferenceNumber());
+		
+		String quotation_premium=quotation.getPremiumInQuotation();
+
 		
 		Thread.sleep(10000);
 
@@ -125,7 +145,7 @@ public class Test_Quotation_Regression {
 		confirm.enterCustomerDetails();
 		
 		//Check customer details
-		confirm.checkcustomerDetails(excelData("nic", i), excelData("first_name", i), excelData("last_name", i), excelData("contact_number_1", i),excelData("house_number", i),excelData("street", i));
+	//	confirm.checkcustomerDetails(excelData("nic", i), excelData("first_name", i), excelData("last_name", i), excelData("contact_number_1", i),excelData("house_number", i),excelData("street", i));
 		
 		//Convert quotation to policy
 		confirm.tickAgreedToConvertQuotationToPolicy();
@@ -145,8 +165,25 @@ public class Test_Quotation_Regression {
 		//Click button to convert the policy
 		confirm.clickConvertToPolicyButton();
 		
-		Thread.sleep(20000);
+		Thread.sleep(40000);
 		
+		confirm.submitTheQuestions();
+		
+		Thread.sleep(10000);
+		
+		confirm.selectReason();
+		
+		confirm.printCoverNOte();
+		
+		Thread.sleep(20000);
+
+		String covernote_premium=confirm.getPremiumInCovernote();
+	//	System.out.println(covernote_premium);
+		
+		Assert.assertEquals(quotation_premium, covernote_premium, "Premiums did not match for:"+excelData("package_type", i));
+		
+		
+
 		
 /*		upload.clickDocumentUpload();
 		

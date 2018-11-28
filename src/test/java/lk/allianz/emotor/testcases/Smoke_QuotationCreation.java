@@ -1,9 +1,10 @@
 package lk.allianz.emotor.testcases;
 
-import static lk.allianz.emotor.pages.ExcelReader.excelData;
+import static lk.allianz.emotor.utilities.ExcelReader.excelData;
 
 import java.io.IOException;
 
+import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.testng.Assert;
@@ -13,7 +14,7 @@ import org.testng.annotations.Test;
 
 import lk.allianz.emotor.base.EmotorBasePage;
 import lk.allianz.emotor.pages.CreateQuotation;
-import lk.allianz.emotor.pages.ExcelReader;
+import lk.allianz.emotor.utilities.ExcelReader;
 
 public class Smoke_QuotationCreation extends EmotorBasePage {
 	
@@ -35,7 +36,7 @@ public class Smoke_QuotationCreation extends EmotorBasePage {
 	
 	
 	//Test 1
-//	@Test(invocationCount = 5,priority=1)
+	//@Test(invocationCount = 5,priority=1)
 		public void test_create_quotation_with_customer_details()throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException {
 			  
 		dataFile = new ExcelReader("src\\main\\java\\lk\\allianz\\emotor\\resources\\smoke_test_data_sheet.xlsx" ,1);
@@ -78,7 +79,7 @@ public class Smoke_QuotationCreation extends EmotorBasePage {
 	
 	
 	//Test 2
-	@Test(invocationCount = 5,priority=2)
+//	@Test(invocationCount = 5,priority=2)
 		public void test_create_quotation_without_customer_details() throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException {
 		
 		dataFile = new ExcelReader("src\\main\\java\\lk\\allianz\\emotor\\resources\\smoke_test_data_sheet.xlsx" ,0);
@@ -228,6 +229,17 @@ public class Smoke_QuotationCreation extends EmotorBasePage {
 	}
 	
 	
+	@Test
+	public void testPDF() throws InvalidPasswordException, IOException, EncryptedDocumentException, InvalidFormatException {
+		dataFile = new ExcelReader("src\\main\\java\\lk\\allianz\\emotor\\resources\\smoke_test_data_sheet.xlsx" ,0);
+
+		//quotation.getQuotationReferenceNumber();
+		//ExcelReader.writeData("reference", 1);
+		
+		String test=quotation.getPremiumInQuotation();
+		System.out.println(test);
+		System.out.println("arshad");
+	}
 	
 	
 	
