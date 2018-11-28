@@ -44,7 +44,7 @@ public class Test_Quotation_Regression {
 
 		
 		 
-			ExcelReader xxx = new ExcelReader("src\\main\\java\\lk\\allianz\\emotor\\resources\\test_data_sheet.xlsx" ,0);
+			ExcelReader xxx = new ExcelReader("src\\main\\java\\lk\\allianz\\emotor\\resources\\test_data_sheet.xlsx" ,1);
 			System.setProperty("webdriver.chrome.driver", "src\\main\\java\\lk\\allianz\\emotor\\resources\\chromedriver.exe");
 			driver = new ChromeDriver();
 			login = new LoginPage(driver);
