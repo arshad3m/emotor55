@@ -310,20 +310,35 @@ private WebDriverWait wait;
 		//Enter insured sum
 		EnterValue(driver, insured_value, value);
 		
+		Thread.sleep(2000);
+		
 		//Select driving experience in number of years
 		SelectByText(driver, driving_exp, years);
+		
+		Thread.sleep(2000);
 		
 		//Select garage type
 		SelectByText(driver, garage_type, garage);
 				
+
+		Thread.sleep(5000);
+		
 		//Select package type
 		SelectByText(driver, package_type, pakage);
+		
+		Thread.sleep(5000);
 		
 		//Select voluntary excess
 		SelectByText(driver, voluntary_excess, voluntary);
 		
 		//Select NCD percentage
-		SelectByText(driver, NCD_value, NCD);
+		//SelectByText(driver, NCD_value, NCD);
+		if(NCD.contains("%")) {
+		SelectByIndex(driver, NCD_value, 2);
+		}
+		
+		//else SelectByIndex(driver, NCD_value, 0);
+		
 		
 	}
 	

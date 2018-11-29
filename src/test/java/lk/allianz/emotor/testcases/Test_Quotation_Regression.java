@@ -15,51 +15,49 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import lk.allianz.emotor.base.EmotorBasePage;
 import lk.allianz.emotor.pages.ConfirmQuotation;
 import lk.allianz.emotor.pages.CreateQuotation;
 import lk.allianz.emotor.pages.DocumentUpload;
 import lk.allianz.emotor.pages.LoginPage;
 import lk.allianz.emotor.pages.ReviseQuotation;
+import lk.allianz.emotor.utilities.CustomListener;
 import lk.allianz.emotor.utilities.ExcelReader;
 
-public class Test_Quotation_Regression {
+
+@Listeners(CustomListener.class)
+public class Test_Quotation_Regression extends EmotorBasePage{
 
 	
-	private WebDriver driver;
-	int i=1;
+	int i=0;
 	
 	private LoginPage login ;
 	private CreateQuotation quotation;
 	private ConfirmQuotation confirm;
-	private DocumentUpload upload ;
 	
+	public  Test_Quotation_Regression() {
+		// TODO Auto-generated constructor stub
+		super();
+	}
 	
 	
 	@BeforeMethod
 	public void setup() throws EncryptedDocumentException, InvalidFormatException, IOException{
 
 		
+		init_smoke();
+		quotation= new CreateQuotation(driver);
+		 confirm = new ConfirmQuotation(driver);
 
-		
-		 
-			ExcelReader xxx = new ExcelReader("src\\main\\java\\lk\\allianz\\emotor\\resources\\test_data_sheet.xlsx" ,1);
-			System.setProperty("webdriver.chrome.driver", "src\\main\\java\\lk\\allianz\\emotor\\resources\\chromedriver.exe");
-			driver = new ChromeDriver();
-			login = new LoginPage(driver);
-			quotation= new CreateQuotation(driver);
-			 confirm = new ConfirmQuotation(driver);
-
-			upload = new DocumentUpload(driver);
-			driver.get("http://192.168.128.68:8081/emotor/");
-			driver.manage().window().maximize();
-			login.loginToEmotor("T221", "allianz@2018");
 	}
 	
 	
-	@Test (invocationCount = 1)
-	public void create_quotation_regression () throws InterruptedException, InvalidPasswordException, IOException {
+	@Test (invocationCount = 2)
+	public void create_quotation_regression () throws InterruptedException, InvalidPasswordException, IOException, EncryptedDocumentException, InvalidFormatException {
+		dataFile=new ExcelReader("src\\main\\java\\lk\\allianz\\emotor\\resources\\test_data_sheet.xlsx" ,1);
 		
 		i++;
 		
@@ -69,7 +67,7 @@ public class Test_Quotation_Regression {
 		quotation.clickToCreateQuotation();
 
 		// Add initial details
-		quotation.addInitialDetails(excelData("customer", i), excelData("market_code", i));
+		quotation.addInitialDetails(excelData("customer", i), excelData("market_code1", i));
 		
 		Thread.sleep(5000);
 
@@ -100,7 +98,7 @@ public class Test_Quotation_Regression {
 		Thread.sleep(5000);
 
 		// Add covers
-					quotation.addCovers(excelData("covers", i));
+		quotation.addCovers(excelData("covers", i));
 
 					
 					
@@ -182,41 +180,13 @@ public class Test_Quotation_Regression {
 		
 		Assert.assertEquals(quotation_premium, covernote_premium, "Premiums did not match for:"+excelData("package_type", i));
 		
-		
-
-		
-/*		upload.clickDocumentUpload();
-		
-		upload.clickUpload();
-		
-		Thread.sleep(8000);
-
-		upload.searchByVehicleNumber();
-		
-		upload.enterSearchText(excelData("car_number", i));
-		
-		upload.clickOnSearchButton();
-		
-		Thread.sleep(20000);
-		
-		upload.checkSearchResultsAreShown();
-
-		Thread.sleep(10000);
-		
-		//Click first document
-		upload.clickPendingPolicyDocumentButton(0);
-		
-		Thread.sleep(8000);
-		
-		upload.checkMandatoryDocuments(excelData("mandatory_documents", i));
-		*/
 		Thread.sleep(20000);
 		
 		
 	}
 	
 	@AfterMethod
-	public void quit() {
+	public void tearDown() {
 		driver.quit();
 
 	}

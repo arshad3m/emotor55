@@ -175,7 +175,7 @@ public class Smoke_QuotationCreation extends EmotorBasePage {
 	
 	
 	//Test 4
-	//@Test
+	@Test
 	public void test_create_quotation_for_unregistered_vehicle() throws EncryptedDocumentException, InvalidFormatException, IOException, InterruptedException {
 		dataFile = new ExcelReader("src\\main\\java\\lk\\allianz\\emotor\\resources\\smoke_test_data_sheet.xlsx" ,3);
 
@@ -229,7 +229,7 @@ public class Smoke_QuotationCreation extends EmotorBasePage {
 	}
 	
 	
-	@Test
+	//@Test
 	public void testPDF() throws InvalidPasswordException, IOException, EncryptedDocumentException, InvalidFormatException {
 		dataFile = new ExcelReader("src\\main\\java\\lk\\allianz\\emotor\\resources\\smoke_test_data_sheet.xlsx" ,0);
 
