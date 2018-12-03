@@ -1,7 +1,13 @@
 package lk.allianz.emotor.utilities;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -134,4 +140,17 @@ public class utilities {
 	}
 	
 	
+	//Take screenshot
+	public static String takeScreenshot(WebDriver driver) throws IOException {
+		String path;
+		
+		TakesScreenshot tc= (TakesScreenshot)driver;
+		File src= tc.getScreenshotAs(OutputType.FILE);
+		path=System.getProperty("user.dir")+"/Screenshot/"+System.currentTimeMillis()+".png";
+		
+		File destination = new File (path);
+		FileUtils.copyFile(src, destination);
+		
+		return path;
+	}
 }

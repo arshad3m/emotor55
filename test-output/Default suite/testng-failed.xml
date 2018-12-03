@@ -5,8 +5,11 @@
     <classes>
       <class name="lk.allianz.emotor.testcases.Test_Quotation_Regression">
         <methods>
+          <include name="tearDown"/>
           <include name="create_quotation_regression"/>
-          <include name="quit"/>
+          <include name="init_reports"/>
+          <include name="AfterSuite"/>
+          <include name="init_smoke"/>
           <include name="setup"/>
         </methods>
       </class> <!-- lk.allianz.emotor.testcases.Test_Quotation_Regression -->

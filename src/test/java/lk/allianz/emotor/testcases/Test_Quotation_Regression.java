@@ -3,20 +3,32 @@ package lk.allianz.emotor.testcases;
 import static lk.allianz.emotor.utilities.ExcelReader.excelData;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.TestNG;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.MediaEntityModelProvider;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
 
 import lk.allianz.emotor.base.EmotorBasePage;
 import lk.allianz.emotor.pages.ConfirmQuotation;
@@ -26,48 +38,51 @@ import lk.allianz.emotor.pages.LoginPage;
 import lk.allianz.emotor.pages.ReviseQuotation;
 import lk.allianz.emotor.utilities.CustomListener;
 import lk.allianz.emotor.utilities.ExcelReader;
+import lk.allianz.emotor.utilities.utilities;
 
 
-@Listeners(CustomListener.class)
 public class Test_Quotation_Regression extends EmotorBasePage{
 
 	
 	int i=0;
 	
-	private LoginPage login ;
 	private CreateQuotation quotation;
 	private ConfirmQuotation confirm;
 	
+
+	
 	public  Test_Quotation_Regression() {
-		// TODO Auto-generated constructor stub
 		super();
 	}
 	
 	
-	@BeforeMethod
-	public void setup() throws EncryptedDocumentException, InvalidFormatException, IOException{
 
-		
-		init_smoke();
-		quotation= new CreateQuotation(driver);
-		 confirm = new ConfirmQuotation(driver);
+
+	
+	@BeforeMethod
+	public void setup() throws EncryptedDocumentException, InvalidFormatException, IOException {
+
+		quotation = new CreateQuotation(driver);
+		confirm = new ConfirmQuotation(driver);
 
 	}
 	
 	
 	@Test (invocationCount = 2)
 	public void create_quotation_regression () throws InterruptedException, InvalidPasswordException, IOException, EncryptedDocumentException, InvalidFormatException {
-		dataFile=new ExcelReader("src\\main\\java\\lk\\allianz\\emotor\\resources\\test_data_sheet.xlsx" ,1);
 		
+		dataFile=new ExcelReader("src\\main\\java\\lk\\allianz\\emotor\\resources\\test_data_sheet.xlsx" ,1);
+		test = report.createTest("Create quotation - Reg. Test case: "+(i+1));
+
 		i++;
 		
-		Thread.sleep(10000);
+		Thread.sleep(8000);
 
 		// Click create quoation
 		quotation.clickToCreateQuotation();
 
 		// Add initial details
-		quotation.addInitialDetails(excelData("customer", i), excelData("market_code1", i));
+		quotation.addInitialDetails(excelData("customer", i), excelData("market_code", i));
 		
 		Thread.sleep(5000);
 
@@ -173,21 +188,31 @@ public class Test_Quotation_Regression extends EmotorBasePage{
 		
 		confirm.printCoverNOte();
 		
-		Thread.sleep(20000);
+		Thread.sleep(10000);
 
 		String covernote_premium=confirm.getPremiumInCovernote();
 	//	System.out.println(covernote_premium);
 		
 		Assert.assertEquals(quotation_premium, covernote_premium, "Premiums did not match for:"+excelData("package_type", i));
 		
-		Thread.sleep(20000);
+		Thread.sleep(10000);
 		
 		
 	}
 	
-	@AfterMethod
-	public void tearDown() {
-		driver.quit();
 
+	
+	@Test 
+	public void secondTest() {
+		test = report.createTest("Second test");
+
+		System.out.println("dummy test");
 	}
+	
+	
+	
+	
+	
+	
+	
 }
