@@ -91,6 +91,7 @@ public class EmotorBasePage {
 		html = new ExtentHtmlReporter("src\\test\\java\\lk\\allianz\\emotor\\reports\\"+date+"_report.html");
 		report = new ExtentReports();
 		report.attachReporter(html);
+		test = report.createTest("Log in");
 	}
 	
 	

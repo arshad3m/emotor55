@@ -15,6 +15,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.aventstack.extentreports.Status;
+
 import lk.allianz.emotor.base.EmotorBasePage;
 import net.bytebuddy.implementation.bytecode.ByteCodeAppender;
 
@@ -30,7 +32,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 //import org.testng.asserts.Assertion;
 
-public class CreateQuotation {
+public class CreateQuotation extends EmotorBasePage{
 private WebDriver driver;
 
 
@@ -54,9 +56,10 @@ private WebDriverWait wait;
 		//Click on Quotations section
 		ClickElement(driver, quotationLink);
 		
+		
+		
 		//Click on Create quotation
 		ClickElement(driver, createquotationLink);
-		
 		
 	}
 	
@@ -76,10 +79,11 @@ private WebDriverWait wait;
 		
 	    //Select customer type dropdown
 	    SelectByText(driver, dd_customerType, strCustomerType);
+
 	    
 	    //Select marketer code
 	    SelectByText(driver,dd_marketerCode,strMarkerterCode);
-	    	
+	
      
 /*	    //click leasing company dropdown
 	    ClickElementById(driver, "select2-chosen-3");
@@ -140,12 +144,16 @@ private WebDriverWait wait;
 	//tick checkbox 'with customer details'
 	public void clickCheckBox_WithCustomerDetails() {
 		
-		ClickElementByXpath(driver, "//*[@id=\"main-wrapper\"]/div/div/ng-view/div[2]/div[1]/div/div/div/div[1]/div/div[3]/div[1]/div/label");
+		//ClickElementByXpath(driver, "//*[@id=\"main-wrapper\"]/div/div/ng-view/div[2]/div[1]/div/div/div/div[1]/div/div[3]/div[1]/div/label");
+		ClickElementByXpath(driver, "//input[@type='checkbox' and @ng-model='withcustomerdetails']//following-sibling::label[@class='form-check-label']");
+		
+		
 	}
 	
 	//tick checkbox 'without customer details'
 	public void clickCheckBox_WithoutCustomerDetails() {
-		ClickElementByXpath(driver, "//*[@id=\"main-wrapper\"]/div/div/ng-view/div[2]/div[1]/div/div/div/div[1]/div/div[3]/div[2]/div/label");
+		//ClickElementByXpath(driver, "//*[@id=\"main-wrapper\"]/div/div/ng-view/div[2]/div[1]/div/div/div/div[1]/div/div[3]/div[2]/div/label");
+		ClickElementByXpath(driver, "//input[@type='checkbox' and @ng-model='withoutcustomerdetails']//following-sibling::label[@class='form-check-label']");
 	}
 	
 	
@@ -227,11 +235,11 @@ private WebDriverWait wait;
 				}
 				
 				if(type.equals("MOTOR CAR")) {
-					SelectByText(driver, vehicle_type, "Passenger Car");	
+					SelectByText(driver, vehicle_type, "Passenger Car");
 				}
 				
 				if(type.equals("MOTOR LORRY")) {
-					SelectByText(driver, vehicle_type, "Trucks");	
+					SelectByText(driver, vehicle_type, "Trucks");
 				}
 				
 				if(type.equals("MOTOR TRICYCLE")) {
@@ -321,7 +329,6 @@ private WebDriverWait wait;
 		SelectByText(driver, garage_type, garage);
 				
 
-		Thread.sleep(5000);
 		
 		//Select package type
 		SelectByText(driver, package_type, pakage);
@@ -489,8 +496,8 @@ private WebDriverWait wait;
 		}
 		
 		document.close();
-		
 		return reference;
+		
 	}
 	
 	//add extended covers
@@ -631,16 +638,20 @@ private WebDriverWait wait;
 		By street_number = By.xpath("//input[@id='address2']");
 
 		EnterValue(driver, company_reg_num, reg);
+		
 		EnterValue(driver, company_vat_num, vat);
+		
 		EnterValue(driver, company_name, name);
+		
 		EnterValue(driver, email, emailid);
+		
+		
 		EnterValue(driver, contact_1, contact1);
+		
 		EnterValue(driver, contact_2, contact2);
 		
-		Actions action= new Actions(driver);
-		//action.moveToElement(driver.findElement(house_number)).build().perform();
-		//EnterValue(driver, house_number, house);
-	//	EnterValue(driver, street_number, street);
+		
+
 
 		
 	}

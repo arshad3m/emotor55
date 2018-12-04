@@ -202,7 +202,7 @@ public class Test_Quotation_Regression extends EmotorBasePage{
 	
 
 	
-	@Test 
+	//@Test 
 	public void secondTest() {
 		test = report.createTest("Second test");
 

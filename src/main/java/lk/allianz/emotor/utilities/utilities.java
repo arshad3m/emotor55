@@ -15,7 +15,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class utilities {
+import com.aventstack.extentreports.Status;
+
+import lk.allianz.emotor.base.EmotorBasePage;
+
+public class utilities extends EmotorBasePage {
 	
 
 	
@@ -25,6 +29,8 @@ public class utilities {
 	public static void WaitForDropDown(WebDriver driver, WebElement element) {
 		WebDriverWait wait1 = new WebDriverWait(driver, 50);
 		wait1.until(ExpectedConditions.elementToBeClickable(element));
+		test.log(Status.INFO, "Selected: "+element.getText());
+
 	}
 	
 	
@@ -41,6 +47,8 @@ public class utilities {
 	public static void ClickElement(WebDriver driver, By element) {
 		WebDriverWait wait=new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+		test.log(Status.INFO, "Clicked: "+element);
+
 		
 		
 
@@ -51,6 +59,8 @@ public class utilities {
 	public static void ClickElement(WebDriver driver, WebElement element) {
 		WebDriverWait wait=new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+		test.log(Status.INFO, "Clicked: "+element.getText());
+
 	}
 	
 	
@@ -58,18 +68,23 @@ public class utilities {
 	public static void ClickElementById(WebDriver driver, String id) {
 		WebDriverWait wait=new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id(id)))).click();
+		test.log(Status.INFO, "Clicked: "+driver.findElement(By.id(id)).getText());
+
 	}
 	
 	//click by id
 	public static void ClickElementByName(WebDriver driver, String name) {
 		WebDriverWait wait=new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.name(name)))).click();
+		test.log(Status.INFO, "Clicked: "+name);
+
 	}
 	
 	//click by id
 	public static void ClickElementByXpath(WebDriver driver, String xpath) {
 		WebDriverWait wait=new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(xpath)))).click();
+		test.log(Status.INFO, "Clicked: "+driver.findElement(By.xpath(xpath)).getText());
 		
 	}
 	
@@ -81,6 +96,8 @@ public class utilities {
 		//action.moveToElement(element).click().build().perform();
 		action.moveToElement(element).build().perform();
 		((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
+		test.log(Status.INFO, "Clicked: "+element.getText());
+
 	}
 	
 	
@@ -93,7 +110,7 @@ public class utilities {
 		wait.until(ExpectedConditions.elementToBeClickable(element)).click();
 		driver.findElement(element).clear();
 		wait.until(ExpectedConditions.presenceOfElementLocated(element)).sendKeys(value);
-
+		test.log(Status.INFO, "Entered "+value);
 	}
 	
 	
@@ -103,7 +120,7 @@ public class utilities {
 		WaitForDropDown(driver, element);
 		Select select = new Select (element);
 	    select.selectByVisibleText(text);
-	    
+	    test.log(Status.INFO, "Selected "+text);
 	}
 	
 	
@@ -111,6 +128,7 @@ public class utilities {
 		WaitForDropDown(driver, element);
 		Select select = new Select (driver.findElement(element));
 	    select.selectByVisibleText(text);
+	    test.log(Status.INFO, "Selected "+text);
 	}
 	
 	
@@ -118,6 +136,7 @@ public class utilities {
 		WaitForDropDown(driver, element);
 		Select select = new Select (driver.findElement(element));
 		select.selectByIndex(index);
+		test.log(Status.INFO, "Selected dropdown index: "+index);
 	}
 	
 	public static void SelectByTextIgnoreCase(WebDriver driver, By element, String text) {
@@ -134,9 +153,13 @@ public class utilities {
 	   
 	    if(select.getOptions().size()<=index) {
 	    	select.selectByIndex(1);
+			test.log(Status.INFO, "Selected dropdown index: "+index);
+
 	    }
-	    else
+	    else {
 	    select.selectByIndex(index);
+		test.log(Status.INFO, "Selected dropdown index: "+index);}
+
 	}
 	
 	
