@@ -50,8 +50,6 @@ public class utilities extends EmotorBasePage {
 		test.log(Status.INFO, "Clicked: "+element);
 
 		
-		
-
 	}
 	
 	

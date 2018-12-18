@@ -3,48 +3,25 @@ package lk.allianz.emotor.testcases;
 import static lk.allianz.emotor.utilities.ExcelReader.excelData;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-import org.testng.ITestResult;
-import org.testng.TestNG;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
-import com.aventstack.extentreports.MediaEntityBuilder;
-import com.aventstack.extentreports.MediaEntityModelProvider;
-import com.aventstack.extentreports.markuputils.ExtentColor;
-import com.aventstack.extentreports.markuputils.MarkupHelper;
 
 import lk.allianz.emotor.base.EmotorBasePage;
 import lk.allianz.emotor.pages.ConfirmQuotation;
 import lk.allianz.emotor.pages.CreateQuotation;
-import lk.allianz.emotor.pages.DocumentUpload;
-import lk.allianz.emotor.pages.LoginPage;
-import lk.allianz.emotor.pages.ReviseQuotation;
-import lk.allianz.emotor.utilities.CustomListener;
 import lk.allianz.emotor.utilities.ExcelReader;
-import lk.allianz.emotor.utilities.utilities;
 
 
 public class Test_Quotation_Regression extends EmotorBasePage{
 
 	
-	int i=0;
+	int i=1;
 	
 	private CreateQuotation quotation;
 	private ConfirmQuotation confirm;
@@ -68,7 +45,7 @@ public class Test_Quotation_Regression extends EmotorBasePage{
 	}
 	
 	
-	@Test (invocationCount = 2)
+	@Test (invocationCount = 1)
 	public void create_quotation_regression () throws InterruptedException, InvalidPasswordException, IOException, EncryptedDocumentException, InvalidFormatException {
 		
 		dataFile=new ExcelReader("src\\main\\java\\lk\\allianz\\emotor\\resources\\test_data_sheet.xlsx" ,1);
@@ -76,15 +53,17 @@ public class Test_Quotation_Regression extends EmotorBasePage{
 
 		i++;
 		
-		Thread.sleep(8000);
+		Thread.sleep(10000);
 
 		// Click create quoation
 		quotation.clickToCreateQuotation();
 
+		Thread.sleep(5000);
+		
 		// Add initial details
 		quotation.addInitialDetails(excelData("customer", i), excelData("market_code", i));
 		
-		Thread.sleep(5000);
+		Thread.sleep(8000);
 
 
 		// Tick checkbox 'With customer details'
@@ -102,7 +81,7 @@ public class Test_Quotation_Regression extends EmotorBasePage{
 		// Add vehicle details
 		quotation.addVehicleDetails(excelData("region", i), excelData("car_number", i),excelData("vehicle_usage", i) );
 		
-		Thread.sleep(5000);
+		Thread.sleep(8000);
 
 
 		// Add quotation details
@@ -110,7 +89,7 @@ public class Test_Quotation_Regression extends EmotorBasePage{
 				excelData("garage", i), excelData("package_type", i), excelData("voluntary_excess", i),
 				excelData("NCD", i));
 
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 
 		// Add covers
 		quotation.addCovers(excelData("covers", i));

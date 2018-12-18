@@ -8,7 +8,6 @@ import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -39,7 +38,7 @@ public class Smoke_QuotationCreation extends EmotorBasePage {
 	
 	
 	//Test 1
-	@Test(invocationCount = 3,priority=1)
+	@Test(invocationCount = 5,priority=1)
 		public void test_create_quotation_with_customer_details()throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException {
 		test = report.createTest("Create quotation with customer: "+(i));
 		dataFile = new ExcelReader("src\\main\\java\\lk\\allianz\\emotor\\resources\\smoke_test_data_sheet.xlsx" ,1);
@@ -82,7 +81,7 @@ public class Smoke_QuotationCreation extends EmotorBasePage {
 	
 	
 	//Test 2
-	@Test(invocationCount = 3,priority=2)
+//	@Test(invocationCount = 3,priority=2)
 		public void test_create_quotation_without_customer_details() throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException {
 		test = report.createTest("Create quotation without customer: "+(i));
 		dataFile = new ExcelReader("src\\main\\java\\lk\\allianz\\emotor\\resources\\smoke_test_data_sheet.xlsx" ,0);
@@ -128,7 +127,7 @@ public class Smoke_QuotationCreation extends EmotorBasePage {
 	
 	
 	//Test 3
-	@Test(priority=3)
+	//@Test(priority=3)
 	public void test_create_company_quotation() throws EncryptedDocumentException, InvalidFormatException, IOException, InterruptedException {
 		k++;
 		test = report.createTest("Create company quotation: "+(k));
@@ -180,7 +179,7 @@ public class Smoke_QuotationCreation extends EmotorBasePage {
 	
 	
 	//Test 4
-	@Test
+	//@Test
 	public void test_create_quotation_for_unregistered_vehicle() throws EncryptedDocumentException, InvalidFormatException, IOException, InterruptedException {
 		l++;
 		test = report.createTest("Create quotation for unregistered vehicle: "+(l));

@@ -1,15 +1,9 @@
 package lk.allianz.emotor.base;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -17,36 +11,20 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
-import com.aventstack.extentreports.AnalysisStrategy;
-import com.aventstack.extentreports.ExceptionTestContextImpl;
-import com.aventstack.extentreports.ExtentReporter;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
-import com.aventstack.extentreports.SessionStatusStats;
-import com.aventstack.extentreports.SystemAttributeContext;
-import com.aventstack.extentreports.TestAttributeTestContextProvider;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.aventstack.extentreports.model.Author;
-import com.aventstack.extentreports.model.Category;
-import com.aventstack.extentreports.model.Log;
-import com.aventstack.extentreports.model.ScreenCapture;
-import com.aventstack.extentreports.model.Screencast;
-import com.aventstack.extentreports.model.Test;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
-import lk.allianz.emotor.pages.CreateQuotation;
-import lk.allianz.emotor.pages.DocumentUpload;
 import lk.allianz.emotor.pages.LoginPage;
-import lk.allianz.emotor.pages.ReviseQuotation;
 import lk.allianz.emotor.utilities.ExcelReader;
 import lk.allianz.emotor.utilities.utilities;
 
@@ -75,10 +53,13 @@ public class EmotorBasePage {
 				"src\\main\\java\\lk\\allianz\\emotor\\resources\\chromedriver.exe");
 		driver = new ChromeDriver();
 		login = new LoginPage(driver);
+		//driver.get("https://acsemotor.allianz.lk/");
+
 		driver.get("http://192.168.128.68:8081/emotor/");
 		driver.manage().window().maximize();
 		login.loginToEmotor("T221", "allianz@2018");
 		
+	//	login.loginToEmotor("AUX_arshadm", "954385AzIT");
 		
 
 	}

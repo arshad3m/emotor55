@@ -6,31 +6,18 @@ import org.apache.pdfbox.io.RandomAccessBufferedFileInputStream;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
 import org.apache.pdfbox.text.PDFTextStripper;
-import org.apache.poi.util.SystemOutLogger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.aventstack.extentreports.Status;
-
 import lk.allianz.emotor.base.EmotorBasePage;
-import net.bytebuddy.implementation.bytecode.ByteCodeAppender;
-
-import static lk.allianz.emotor.utilities.ExcelReader.excelData;
 import static lk.allianz.emotor.utilities.utilities.*;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.regex.Pattern;
-//import org.testng.asserts.Assertion;
 
 public class CreateQuotation extends EmotorBasePage{
 private WebDriver driver;
@@ -82,7 +69,8 @@ private WebDriverWait wait;
 
 	    
 	    //Select marketer code
-	    SelectByText(driver,dd_marketerCode,strMarkerterCode);
+	    //SelectByText(driver,dd_marketerCode,strMarkerterCode);
+	    SelectByIndex(driver, By.id("accountmanager"), 1);
 	
      
 /*	    //click leasing company dropdown
@@ -222,7 +210,7 @@ private WebDriverWait wait;
 				EnterValue(driver, vehicle_number, number);
 				
 				//Wait for the load to happen
-				Thread.sleep(5000);
+				Thread.sleep(10000);
 
 				model = driver.findElement(By.cssSelector("span[ng-bind='vModelShowValue']")).getText().split(" ");
 				make = driver.findElement(By.cssSelector("span[ng-bind='vMakeShowValue']")).getText();

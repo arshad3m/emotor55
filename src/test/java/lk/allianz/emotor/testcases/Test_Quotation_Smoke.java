@@ -1,24 +1,15 @@
 package lk.allianz.emotor.testcases;
 
 import static lk.allianz.emotor.utilities.ExcelReader.*;
-import static org.testng.Assert.assertEquals;
-
 import java.io.IOException;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import lk.allianz.emotor.pages.ConfirmQuotation;
@@ -53,14 +44,16 @@ public class Test_Quotation_Smoke {
 		quotation= new CreateQuotation(driver);
 		documentUpload = new DocumentUpload(driver);
 		revise=new ReviseQuotation(driver);
-		driver.get("http://192.168.128.68:8081/emotor/");
+		//driver.get("http://192.168.128.68:8081/emotor/");
+		driver.get("https://acsemotor.allianz.lk/");
 		driver.manage().window().maximize();
-		login.loginToEmotor("T221", "allianz@2018");
+		//login.loginToEmotor("T221", "allianz@2018");
+		login.loginToEmotor("AUX_arshadm", "954385AzIT");
 	}
 	
 	
 	//Create quotations with customer details
-	//@Test(invocationCount = 2,priority=1)
+	@Test(invocationCount = 5,priority=1)
 	public void testCreateQuotationWithCustomerDetails()throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException {
 		  
 		i++;
@@ -138,7 +131,7 @@ public class Test_Quotation_Smoke {
 	}
 	
 	
-	@Test(invocationCount = 1,priority=2)
+	//@Test(invocationCount = 1,priority=2)
 	public void testConfirmQuotation() throws InterruptedException {
 		
 		j++;

@@ -1,7 +1,6 @@
 package lk.allianz.emotor.utilities;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
@@ -13,7 +12,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.apache.poi.ss.util.CellReference;
 
 public class ExcelReader {
 
@@ -24,7 +22,7 @@ public class ExcelReader {
 	private static int sheet_index=0;
 	
 	public ExcelReader (String path, int sheetIndex) throws EncryptedDocumentException, InvalidFormatException, IOException {
-		this.path = path;
+		ExcelReader.path = path;
 		//path="src\\main\\java\\Resources\\test_data_sheet.xlsx";
 		workbook=WorkbookFactory.create(new File(path));
 		sheet=workbook.getSheetAt(sheetIndex);
