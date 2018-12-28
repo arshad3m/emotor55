@@ -1,53 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" ignored="0" total="1" passed="0">
+<testng-results skipped="1" failed="0" ignored="0" total="1" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="236435" started-at="2018-12-18T05:56:13Z" finished-at="2018-12-18T06:00:09Z">
+  <suite name="Default suite" duration-ms="496" started-at="2018-12-28T12:29:40Z" finished-at="2018-12-28T12:29:41Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="236435" started-at="2018-12-18T05:56:13Z" finished-at="2018-12-18T06:00:09Z">
+    <test name="Default test" duration-ms="496" started-at="2018-12-28T12:29:40Z" finished-at="2018-12-28T12:29:41Z">
       <class name="lk.allianz.emotor.testcases.Test_Quotation_Regression">
-        <test-method status="PASS" signature="init_reports()[pri:0, instance:lk.allianz.emotor.testcases.Test_Quotation_Regression@6eda5c9]" name="init_reports" is-config="true" duration-ms="170" started-at="2018-12-18T05:56:13Z" finished-at="2018-12-18T05:56:13Z">
+        <test-method status="PASS" signature="init_reports()[pri:0, instance:lk.allianz.emotor.testcases.Test_Quotation_Regression@479d31f3]" name="init_reports" is-config="true" duration-ms="165" started-at="2018-12-28T12:29:40Z" finished-at="2018-12-28T12:29:40Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- init_reports -->
-        <test-method status="PASS" signature="init_smoke()[pri:0, instance:lk.allianz.emotor.testcases.Test_Quotation_Regression@6eda5c9]" name="init_smoke" is-config="true" duration-ms="32142" started-at="2018-12-18T05:56:13Z" finished-at="2018-12-18T05:56:45Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- init_smoke -->
-        <test-method status="PASS" signature="setup()[pri:0, instance:lk.allianz.emotor.testcases.Test_Quotation_Regression@6eda5c9]" name="setup" is-config="true" duration-ms="19" started-at="2018-12-18T05:56:45Z" finished-at="2018-12-18T05:56:45Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method status="FAIL" signature="create_quotation_regression()[pri:0, instance:lk.allianz.emotor.testcases.Test_Quotation_Regression@6eda5c9]" name="create_quotation_regression" duration-ms="203019" started-at="2018-12-18T05:56:45Z" finished-at="2018-12-18T06:00:08Z">
-          <exception class="org.openqa.selenium.TimeoutException">
+        <test-method status="SKIP" signature="create_quotation_regression(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:lk.allianz.emotor.testcases.Test_Quotation_Regression@479d31f3]" name="create_quotation_regression" duration-ms="0" started-at="2018-12-28T12:29:41Z" data-provider="getData" finished-at="2018-12-28T12:29:41Z">
+          <exception class="java.lang.RuntimeException">
             <message>
-              <![CDATA[Expected condition failed: waiting for element to be clickable: By.id: ncd (tried for 30 second(s) with 500 milliseconds interval)
-Build info: version: '3.13.0', revision: '2f0d292', time: '2018-06-25T15:24:21.231Z'
-System info: host: 'AZ1400BATIGENOS', ip: '10.71.65.164', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.43.600210 (68dcf5eebde371..., userDataDir: C:\Users\AUX_AR~1\AppData\L...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:54144}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 71.0.3578.98, webStorageEnabled: true}
-Session ID: de5d096288ecb5997b7f018e4607ca89]]>
+              <![CDATA[java.lang.NullPointerException]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.id: ncd (tried for 30 second(s) with 500 milliseconds interval)
-Build info: version: '3.13.0', revision: '2f0d292', time: '2018-06-25T15:24:21.231Z'
-System info: host: 'AZ1400BATIGENOS', ip: '10.71.65.164', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.43.600210 (68dcf5eebde371..., userDataDir: C:\Users\AUX_AR~1\AppData\L...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:54144}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 71.0.3578.98, webStorageEnabled: true}
-Session ID: de5d096288ecb5997b7f018e4607ca89
-at lk.allianz.emotor.base.EmotorBasePage.tearDown(EmotorBasePage.java:88)
-at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-at java.lang.reflect.Method.invoke(Unknown Source)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
-at org.testng.internal.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:59)
-at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:455)
-at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:222)
-at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)
-at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
-at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
+              <![CDATA[java.lang.RuntimeException: java.lang.NullPointerException
+at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:49)
+at org.testng.internal.MethodInvocationHelper.invokeDataProvider(MethodInvocationHelper.java:131)
+at org.testng.internal.Parameters.handleParameters(Parameters.java:706)
+at org.testng.internal.ParameterHandler.handleParameters(ParameterHandler.java:49)
+at org.testng.internal.ParameterHandler.createParameters(ParameterHandler.java:37)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:923)
 at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
 at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
 at org.testng.TestRunner.privateRun(TestRunner.java:648)
@@ -65,24 +41,24 @@ at org.testng.TestNG.run(TestNG.java:1017)
 at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
 at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: java.lang.NullPointerException
+at lk.allianz.emotor.utilities.utilities.getDataFromExcel(utilities.java:204)
+at lk.allianz.emotor.testcases.Test_Quotation_Regression.getData(Test_Quotation_Regression.java:51)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:74)
+at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:45)
+... 22 more
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          </exception> <!-- java.lang.RuntimeException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- create_quotation_regression -->
-        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:lk.allianz.emotor.testcases.Test_Quotation_Regression@6eda5c9]" name="tearDown" is-config="true" duration-ms="1225" started-at="2018-12-18T06:00:08Z" finished-at="2018-12-18T06:00:09Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=create_quotation_regression status=FAILURE method=Test_Quotation_Regression.create_quotation_regression()[pri:0, instance:lk.allianz.emotor.testcases.Test_Quotation_Regression@6eda5c9] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method status="PASS" signature="AfterSuite()[pri:0, instance:lk.allianz.emotor.testcases.Test_Quotation_Regression@6eda5c9]" name="AfterSuite" is-config="true" duration-ms="240" started-at="2018-12-18T06:00:10Z" finished-at="2018-12-18T06:00:10Z">
+        <test-method status="PASS" signature="AfterSuite()[pri:0, instance:lk.allianz.emotor.testcases.Test_Quotation_Regression@479d31f3]" name="AfterSuite" is-config="true" duration-ms="266" started-at="2018-12-28T12:29:41Z" finished-at="2018-12-28T12:29:41Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AfterSuite -->
