@@ -2,22 +2,22 @@
 <testng-results skipped="1" failed="0" ignored="0" total="1" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="496" started-at="2018-12-28T12:29:40Z" finished-at="2018-12-28T12:29:41Z">
+  <suite name="Default suite" duration-ms="509" started-at="2018-12-31T11:49:15Z" finished-at="2018-12-31T11:49:15Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="496" started-at="2018-12-28T12:29:40Z" finished-at="2018-12-28T12:29:41Z">
+    <test name="Default test" duration-ms="509" started-at="2018-12-31T11:49:15Z" finished-at="2018-12-31T11:49:15Z">
       <class name="lk.allianz.emotor.testcases.Test_Quotation_Regression">
-        <test-method status="PASS" signature="init_reports()[pri:0, instance:lk.allianz.emotor.testcases.Test_Quotation_Regression@479d31f3]" name="init_reports" is-config="true" duration-ms="165" started-at="2018-12-28T12:29:40Z" finished-at="2018-12-28T12:29:40Z">
+        <test-method status="PASS" signature="init_reports()[pri:0, instance:lk.allianz.emotor.testcases.Test_Quotation_Regression@479d31f3]" name="init_reports" is-config="true" duration-ms="187" started-at="2018-12-31T11:49:15Z" finished-at="2018-12-31T11:49:15Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- init_reports -->
-        <test-method status="SKIP" signature="create_quotation_regression(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:lk.allianz.emotor.testcases.Test_Quotation_Regression@479d31f3]" name="create_quotation_regression" duration-ms="0" started-at="2018-12-28T12:29:41Z" data-provider="getData" finished-at="2018-12-28T12:29:41Z">
+        <test-method status="SKIP" signature="create_quotation_regression(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:lk.allianz.emotor.testcases.Test_Quotation_Regression@479d31f3]" name="create_quotation_regression" duration-ms="0" started-at="2018-12-31T11:49:15Z" data-provider="getData" finished-at="2018-12-31T11:49:15Z">
           <exception class="java.lang.RuntimeException">
             <message>
-              <![CDATA[java.lang.NullPointerException]]>
+              <![CDATA[java.lang.ArrayIndexOutOfBoundsException: 2]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.RuntimeException: java.lang.NullPointerException
+              <![CDATA[java.lang.RuntimeException: java.lang.ArrayIndexOutOfBoundsException: 2
 at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:49)
 at org.testng.internal.MethodInvocationHelper.invokeDataProvider(MethodInvocationHelper.java:131)
 at org.testng.internal.Parameters.handleParameters(Parameters.java:706)
@@ -41,9 +41,9 @@ at org.testng.TestNG.run(TestNG.java:1017)
 at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
 at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-Caused by: java.lang.NullPointerException
-at lk.allianz.emotor.utilities.utilities.getDataFromExcel(utilities.java:204)
-at lk.allianz.emotor.testcases.Test_Quotation_Regression.getData(Test_Quotation_Regression.java:51)
+Caused by: java.lang.ArrayIndexOutOfBoundsException: 2
+at lk.allianz.emotor.utilities.utilities.getDataFromExcel(utilities.java:206)
+at lk.allianz.emotor.testcases.Test_Quotation_Regression.getData(Test_Quotation_Regression.java:54)
 at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -58,7 +58,7 @@ at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(Met
           <reporter-output>
           </reporter-output>
         </test-method> <!-- create_quotation_regression -->
-        <test-method status="PASS" signature="AfterSuite()[pri:0, instance:lk.allianz.emotor.testcases.Test_Quotation_Regression@479d31f3]" name="AfterSuite" is-config="true" duration-ms="266" started-at="2018-12-28T12:29:41Z" finished-at="2018-12-28T12:29:41Z">
+        <test-method status="PASS" signature="AfterSuite()[pri:0, instance:lk.allianz.emotor.testcases.Test_Quotation_Regression@479d31f3]" name="AfterSuite" is-config="true" duration-ms="238" started-at="2018-12-31T11:49:15Z" finished-at="2018-12-31T11:49:16Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AfterSuite -->

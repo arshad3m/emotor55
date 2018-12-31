@@ -49,7 +49,7 @@
               <ul>
                 <li>
                   <a href="#" class="navigator-link " panel-name="test-xml-Default_suite">
-                    <span>C:\Users\AUX_ArshadM\AppData\Local\Temp\testng-eclipse-766690637\testng-customsuite.xml</span>
+                    <span>C:\Users\AUX_ArshadM\AppData\Local\Temp\testng-eclipse--1023741029\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -128,7 +128,7 @@
                   <a name="create_quotation_regression">
                   </a> <!-- create_quotation_regression -->
                   <span class="method-name">create_quotation_regression</span>
-                  <div class="stack-trace">java.lang.RuntimeException: java.lang.NullPointerException
+                  <div class="stack-trace">java.lang.RuntimeException: java.lang.ArrayIndexOutOfBoundsException: 2
 	at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:49)
 	at org.testng.internal.MethodInvocationHelper.invokeDataProvider(MethodInvocationHelper.java:131)
 	at org.testng.internal.Parameters.handleParameters(Parameters.java:706)
@@ -152,9 +152,9 @@
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-Caused by: java.lang.NullPointerException
-	at lk.allianz.emotor.utilities.utilities.getDataFromExcel(utilities.java:204)
-	at lk.allianz.emotor.testcases.Test_Quotation_Regression.getData(Test_Quotation_Regression.java:51)
+Caused by: java.lang.ArrayIndexOutOfBoundsException: 2
+	at lk.allianz.emotor.utilities.utilities.getDataFromExcel(utilities.java:206)
+	at lk.allianz.emotor.testcases.Test_Quotation_Regression.getData(Test_Quotation_Regression.java:54)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -172,7 +172,7 @@ Caused by: java.lang.NullPointerException
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\AUX_ArshadM\AppData\Local\Temp\testng-eclipse-766690637\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\AUX_ArshadM\AppData\Local\Temp\testng-eclipse--1023741029\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -263,7 +263,7 @@ return data;
               </div> <!-- configuration-suite before -->
               <div class="configuration-suite after">
                 <span class="method-name">AfterSuite</span>
-                <span class="method-start">690 ms</span>
+                <span class="method-start">724 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
