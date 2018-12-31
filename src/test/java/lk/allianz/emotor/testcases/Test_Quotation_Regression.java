@@ -48,17 +48,24 @@ public class Test_Quotation_Regression extends EmotorBasePage{
 	
 	@DataProvider
 	public Object[][] getData() throws EncryptedDocumentException, InvalidFormatException, IOException {
+		
+		Object[][] shortData = new Object[1][24];
+		
 		Object[][] data=utilities.getDataFromExcel("src\\main\\java\\lk\\allianz\\emotor\\resources\\test_data_sheet.xlsx", "1");
-		return data;
+		
+		for(int i=0; i<shortData.length; i++)
+			  for(int j=0; j<shortData[i].length; j++)
+				  shortData[i][j]=data[i][j];
+		
+		return shortData;
 	}
 	
 	
-	@Test (dataProvider="getData")
+	@Test (dataProvider="getData" )
 	public void create_quotation_regression (String testcase, String customer, String market_code, String salutation, String nic, String email,  String first_name,
 			String last_name, String contact_number_1, String house_number, String street, String city,String region, String car_number, String ttt, String vehicle_usage, String insured_amount,
 			String driving_exp, String garage, String package_type, String voluntary_excess, String NCD,  String policy_start_date, String covers) throws InterruptedException, InvalidPasswordException, IOException, EncryptedDocumentException, InvalidFormatException {
 		
-		dataFile=new ExcelReader("src\\main\\java\\lk\\allianz\\emotor\\resources\\test_data_sheet.xlsx" ,1);
 		test = report.createTest("Create quotation - Reg. Test case: "+(i+1));
 
 		i++;
